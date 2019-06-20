@@ -12,14 +12,8 @@ export class AppComponent {
   title = 'UHype Project';
 
 
-  constructor(private jwt: JwtHelperService, private sp: StatusProvider, meta: Meta, title: Title) {
+  constructor(private jwt: JwtHelperService, private sp: StatusProvider, title: Title) {
     title.setTitle("U-Hype Home Page");
-    meta.addTags([
-      { name: 'author', content: 'Dr. Phyllis Tawiah (Principal Investigator); Mr. Ibrahim Duah Kwaku (Data Manager)' },
-      { name: 'description', content: 'Project website for the U-Hype Project' },
-      { name: 'keywords', content: 'Hypertension, Chronic Disease, Hypertension Management' },
-      { name: 'abstract', content: "This projects seeks to evaluate the care given to hypertensive patients at the various hospitals in Ghana" }
-    ]);
     let token = localStorage.getItem("jwt");
     if (token) {
       let roles = this.jwt.decodeToken(token);
