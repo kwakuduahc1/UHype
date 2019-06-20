@@ -21,7 +21,7 @@ export class NavMenuComponent {
 
   constructor(public status: StatusProvider, private http: HttpService, private router: Router) {
 
-  }
+  } 
 
   signout() {
     this.http.signout().subscribe(() => {

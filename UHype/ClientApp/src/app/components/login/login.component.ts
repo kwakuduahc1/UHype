@@ -30,11 +30,10 @@ export class LoginComponent {
   }
 
   register(login: IUsers) {
-    this.nav.beginProc();
     this.htpp.login(login).subscribe((res: IUsers) => {
       let token = (<any>res).token;
       localStorage.setItem("jwt", token);
-      var roles = this.jwt.decodeToken(token);
+      let roles = this.jwt.decodeToken(token);
       let user = {
         roles: roles['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'],
         user: {
@@ -46,7 +45,6 @@ export class LoginComponent {
       }
       this.status.roles = user.roles;
       this.status.user = user.user;
-      this.nav.endProc();
       this.router.navigate(['/home']);
     }, () => {
       this.nav.endProc();

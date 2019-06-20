@@ -24,6 +24,5 @@ export class ErrorHandlerInterceptor {
       tap(() => { }, err => this.hand.onError(err)), finalize(() => this.act.endProc()));
   }
   constructor(private act: ActivityProvider, private hand: bsHandler) {
-    alert("Hello World");
   }
 }
