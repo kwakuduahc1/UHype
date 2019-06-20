@@ -6,14 +6,24 @@ import { bsHandler } from '../model/bsHandler';
 import { ActivityProvider } from '../providers/ActivityProvider';
 import { TokenProvider } from '../providers/TokenProvider';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.act.beginProc();
     let nreq = req.clone({ headers: this.token.getHeader() });
-    return next.handle(nreq).pipe(
+    return next.handle(nreq);
+  }
+  constructor(private token: TokenProvider) {
+  }
+}
+
+@Injectable()
+export class ErrorHandlerInterceptor {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    this.act.beginProc();
+    return next.handle(req).pipe(
       tap(() => { }, err => this.hand.onError(err)), finalize(() => this.act.endProc()));
   }
-  constructor(private token: TokenProvider, private act: ActivityProvider, private hand: bsHandler) {
+  constructor(private act: ActivityProvider, private hand: bsHandler) {
+    alert("Hello World");
   }
 }

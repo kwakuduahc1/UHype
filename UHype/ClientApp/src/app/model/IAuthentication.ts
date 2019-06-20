@@ -8,4 +8,6 @@ export interface IRegisterVm {
   password: string;
   confirmPassword: string;
   rememberMe: boolean;
+  facility: string;
+  team: string;
 }

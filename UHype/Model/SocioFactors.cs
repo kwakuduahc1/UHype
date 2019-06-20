@@ -7,6 +7,7 @@ namespace UHype.Model
     public class SocioFactors
     {
         [Key]
+        [Required]
         [ForeignKey(nameof(Demography))]
         public Guid DemographyID { get; set; }
 

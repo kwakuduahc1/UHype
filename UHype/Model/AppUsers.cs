@@ -15,5 +15,13 @@ namespace UHype.Model
         [StringLength(30, MinimumLength = 6)]
         [NotMapped]
         public string Password { get; set; }
+
+        [Required]
+        [StringLength(10, MinimumLength =3)]
+        public string Team { get; set; }
+
+        [Required]
+        [StringLength(20)]
+        public string Facility { get; set; }
     }
 }

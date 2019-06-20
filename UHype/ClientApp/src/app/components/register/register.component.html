@@ -1,0 +1,89 @@
+<h1 class="h1">Register</h1>
+<form id="form" name="form" [formGroup]="form" (submit)="register(form.value)" class="form-horizontal">
+  <fieldset>
+    <legend>Provide basic information</legend>
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="userName">User name</label>
+      <div class="col-md-6" [ngClass]="form.controls.userName?.errors ? 'has-error' : 'has-success'">
+        <input type="text"
+               class="form-control"
+               id="userName"
+               title="Enter your user name"
+               formControlName="userName"
+               placeholder="User name">
+      </div>
+      <span [ngClass]="form.controls.userName.errors?.maxlength ? 'text-danger' : ''" *ngIf="form.controls.userName.errors?.maxlength">The maximum length is {{form.controls.userName.errors.maxlength.requiredLength}} characters: Current is {{form.controls.userName.errors.maxlength.actualLength}}</span>
+      <span [ngClass]="form.controls.userName.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.userName.errors?.required">Enter your user name</span>
+      <span [ngClass]="form.controls.userName.errors?.minlength ? 'text-danger' : ''" *ngIf="form.controls.userName.errors?.minlength">The minimum length is {{form.controls.userName.errors.minlength.requiredLength}} characters: Current is {{form.controls.userName.errors.minlength.actualLength}}</span>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="password">Password</label>
+      <div class="col-md-6" [ngClass]="form.controls.password?.errors ? 'has-error' : 'has-success'">
+        <input type="password"
+               class="form-control"
+               id="password"
+               title="your password here"
+               formControlName="password"
+               placeholder="Password">
+      </div>
+      <span [ngClass]="form.controls.password.errors?.maxlength ? 'text-danger' : ''" *ngIf="form.controls.password.errors?.maxlength">The maximum length is {{form.controls.password.errors.maxlength.requiredLength}} characters: Current is {{form.controls.password.errors.maxlength.actualLength}}</span>
+      <span [ngClass]="form.controls.password.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.password.errors?.required">Enter your password</span>
+      <span [ngClass]="form.controls.password.errors?.minlength ? 'text-danger' : ''" *ngIf="form.controls.password.errors?.minlength">The minimum length is {{form.controls.password.errors.minlength.requiredLength}} characters: Current is {{form.controls.password.errors.minlength.actualLength}}</span>
+      <span [ngClass]="form.controls.password.errors?.pattern ? 'text-danger' : ''" *ngIf="form.controls.password.errors?.pattern">Password can only contain letters</span>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="confirmPassword">Confirm Password</label>
+      <div class="col-md-6" [ngClass]="form.controls.confirmPassword?.errors ? 'has-error' : 'has-success'">
+        <input type="password"
+               class="form-control"
+               id="confirmPassword"
+               title="Confirmation Password"
+               formControlName="confirmPassword"
+               placeholder="Confirm password">
+      </div>
+      <span [ngClass]="form.controls.confirmPassword.errors?.maxlength ? 'text-danger' : ''" *ngIf="form.controls.confirmPassword.errors?.maxlength">The maximum length is {{form.controls.confirmPassword.errors.maxlength.requiredLength}} characters: Current is {{form.controls.confirmPassword.errors.maxlength.actualLength}}</span>
+      <span [ngClass]="form.controls.confirmPassword.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.confirmPassword.errors?.required">Enter your confirmPassword</span>
+      <span [ngClass]="form.controls.confirmPassword.errors?.minlength ? 'text-danger' : ''" *ngIf="form.controls.confirmPassword.errors?.minlength">The minimum length is {{form.controls.confirmPassword.errors.minlength.requiredLength}} characters: Current is {{form.controls.confirmPassword.errors.minlength.actualLength}}</span>
+      <span [ngClass]="form.controls.confirmPassword.errors?.pattern ? 'text-danger' : ''" *ngIf="form.controls.confirmPassword.errors?.pattern">confirmPassword can only contain letters</span>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="facility">Facility</label>
+      <div class="col-md-6" [ngClass]="form.controls.facility?.errors ? 'has-error' : 'has-success'">
+        <select 
+               class="form-control"
+               id="facility"
+               title="Select facility"
+               formControlName="facility">
+          <option *ngFor="let f of facs" [ngValue]="f">{{f}}</option>
+        </select>
+      </div>
+      <span [ngClass]="form.controls.facility.errors?.maxlength ? 'text-danger' : ''" *ngIf="form.controls.facility.errors?.maxlength">The maximum length is {{form.controls.facility.errors.maxlength.requiredLength}} characters: Current is {{form.controls.facility.errors.maxlength.actualLength}}</span>
+      <span [ngClass]="form.controls.facility.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.facility.errors?.required">Select facility</span>
+      <span [ngClass]="form.controls.facility.errors?.minlength ? 'text-danger' : ''" *ngIf="form.controls.facility.errors?.minlength">The minimum length is {{form.controls.facility.errors.minlength.requiredLength}} characters: Current is {{form.controls.facility.errors.minlength.actualLength}}</span>
+      <span [ngClass]="form.controls.facility.errors?.pattern ? 'text-danger' : ''" *ngIf="form.controls.facility.errors?.pattern">facility can only contain letters</span>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="team">Select Team</label>
+      <div class="col-md-6" [ngClass]="form.controls.team?.errors ? 'has-error' : 'has-success'">
+        <select type="password"
+               class="form-control"
+               id="team"
+               title="Select team"
+               formControlName="team">
+          <option *ngFor="let t of teams" [ngValue]="t">{{t}}</option>
+        </select>
+      </div>
+      <span [ngClass]="form.controls.team.errors?.maxlength ? 'text-danger' : ''" *ngIf="form.controls.team.errors?.maxlength">The maximum length is {{form.controls.team.errors.maxlength.requiredLength}} characters: Current is {{form.controls.team.errors.maxlength.actualLength}}</span>
+      <span [ngClass]="form.controls.team.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.team.errors?.required">Enter your team</span>
+      <span [ngClass]="form.controls.team.errors?.minlength ? 'text-danger' : ''" *ngIf="form.controls.team.errors?.minlength">The minimum length is {{form.controls.team.errors.minlength.requiredLength}} characters: Current is {{form.controls.team.errors.minlength.actualLength}}</span>
+      <span [ngClass]="form.controls.team.errors?.pattern ? 'text-danger' : ''" *ngIf="form.controls.team.errors?.pattern">team can only contain letters</span>
+    </div>
+    <div class="col-md-offset-3">
+      <button [disabled]="form.invalid || act.isProcessing" type="submit" [ngClass]="form.invalid ? 'btn-danger' : 'btn-success'" class="btn">Register</button>
+    </div>
+
+  </fieldset>
+</form>

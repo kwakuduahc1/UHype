@@ -103,8 +103,6 @@ declare module Server.Dtos {
 			followUp: boolean;
 			demography: Server.Dtos.Demography;
 		};
-		medicationSources: {
-		};
 		qualityAssessments: {
 			demographyID: any;
 			healthScale: any;

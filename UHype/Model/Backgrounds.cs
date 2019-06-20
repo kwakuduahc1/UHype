@@ -12,7 +12,6 @@ namespace UHype.Model
 
         public byte IsSelf { get; set; }
 
-        [Required]
         [StringLength(50, MinimumLength = 3)]
         public string Facility { get; set; }
 
@@ -51,8 +50,6 @@ namespace UHype.Model
         public virtual Charts Charts { get; set; }
 
         public virtual  Labs Labs { get; set; }
-
-        public virtual MedicationSources MedicationSources { get; set; }
 
         public virtual QualityAssessments QualityAssessments { get; set; }
 

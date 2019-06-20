@@ -27,12 +27,12 @@ namespace UHype.Model
 
         public virtual DbSet<Labs> Labs { get; set; }
 
-        public virtual DbSet<MedicationSources> MedicationSources { get; set; }
-
         public virtual DbSet<QualityAssessments> QualityAssessments { get; set; }
 
         public virtual DbSet<SecondSections> SecondSections { get; set; }
 
         public virtual DbSet<SocioFactors> SocioFactors { get; set; }
+
+        public virtual DbSet<AppUsers> AppUsers { get; set; }
     }
 }

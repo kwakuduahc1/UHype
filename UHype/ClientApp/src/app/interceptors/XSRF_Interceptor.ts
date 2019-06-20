@@ -2,7 +2,7 @@ import { HttpInterceptor, HttpXsrfTokenExtractor, HttpHandler, HttpRequest, Http
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class HttpXsrfInterceptor implements HttpInterceptor {
   constructor(private tokenService: HttpXsrfTokenExtractor) {
   }
