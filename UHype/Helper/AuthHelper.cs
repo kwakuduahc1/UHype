@@ -25,8 +25,8 @@ namespace UHype.Helper
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
             var tokeOptions = new JwtSecurityToken(
-                issuer: _env.IsProduction() ? "http://localhost:5000" : "https://localhost:44340",
-                audience: _env.IsProduction() ? "http://localhost:5000" : "https://localhost:44340",
+                issuer: _env.IsProduction() ? "https://uhype.azurewebsites.net/" : "https://localhost:44340",
+                audience: _env.IsProduction() ? "https://uhype.azurewebsites.net/" : "https://localhost:44340",
                 claims: Claims,
                 expires: DateTime.Now.AddMonths(6),
                 signingCredentials: signinCredentials

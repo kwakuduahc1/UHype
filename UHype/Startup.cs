@@ -52,8 +52,8 @@ namespace UHype
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = Env.IsProduction() ? "http://localhost:5000" : "https://localhost:64955",
-                    ValidAudience = Env.IsProduction() ? "http://localhost:5000" : "https://localhost:64955",
+                    ValidIssuer = Env.IsProduction() ? "https://uhype.azurewebsites.net/" : "https://localhost:64955",
+                    ValidAudience = Env.IsProduction() ? "https://uhype.azurewebsites.net/" : "https://localhost:64955",
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SxkeJZF776DgzfE!@"))
                 };
             });
