@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UHype.Model
@@ -8,7 +7,7 @@ namespace UHype.Model
     {
         [Key]
         [ForeignKey(nameof(Demography))]
-        public Guid DemographyID { get; set; }
+        public int DemographyID { get; set; }
 
         public double Height { get; set; }
 

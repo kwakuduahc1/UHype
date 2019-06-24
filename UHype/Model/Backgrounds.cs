@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,7 +9,7 @@ namespace UHype.Model
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid DemographyID { get; set; }
+        public int DemographyID { get; set; }
 
         public byte IsSelf { get; set; }
 
@@ -47,12 +48,12 @@ namespace UHype.Model
 
         public virtual BpHistory BpHistory { get; set; }
 
-        public virtual Charts Charts { get; set; }
+        public virtual ICollection<Charts> Charts { get; set; }
 
-        public virtual  Labs Labs { get; set; }
+        public virtual Labs Labs { get; set; }
 
         public virtual QualityAssessments QualityAssessments { get; set; }
 
-        public virtual  SocioFactors SocioFactors { get; set; }
+        public virtual SocioFactors SocioFactors { get; set; }
     }
 }

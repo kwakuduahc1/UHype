@@ -1,0 +1,174 @@
+export interface IDemography {
+  demographyID: string;
+  isSelf: number;
+  facility: string;
+  age: string;
+  marital: string;
+  religion: string;
+  ethnicity: string;
+  occupation: string;
+  education: string;
+  dateAdded: Date;
+}
+export interface ISecondSections {
+  demographyID: string;
+  hasPressure: number;
+  screening: boolean;
+  visit: boolean;
+  pharmacy: boolean;
+  admission: boolean;
+  forgotten: boolean;
+  others: string;
+  isControlled: boolean;
+  hasAdmiitedIn12: boolean;
+  measureAtHome: boolean;
+  relativesHBP: number;
+  degree1: boolean;
+  chronicDisease: number;
+  diabetes: boolean;
+  cKD: boolean;
+  heartFail: boolean;
+  stroke: boolean;
+  dementia: boolean;
+  atrialFib: boolean;
+  prostate: boolean;
+  cAD: boolean;
+  hyperLip: boolean;
+  pain: boolean;
+  othersCND: string;
+  hPTMeds: number;
+  amlodipine: boolean;
+  lisinopril: boolean;
+  losarta: boolean;
+  bendro: boolean;
+  hCTZ: boolean;
+  atenolol: boolean;
+  bisoprolol: boolean;
+  methlydopa: boolean;
+  frusemide: boolean;
+  hydralazine: boolean;
+  otherMeds: string;
+  hospitalNHIS: boolean;
+  hospClosePharmNHIS: boolean;
+  hospClosePharmLater: boolean;
+  closePharmNHIS: boolean;
+  hospitalFee: boolean;
+  labWork: number;
+  hasNHIS: number;
+  careFacilities: number;
+  doGetMedsFromAll: number;
+  hasSpecialClinic: number;
+  sameDoctor: number;
+  drTellState: number;
+  staffAdvise: number;
+  runOutMeds: number;
+  missAppointment: number;
+  takeDrugsBeforeVisit: number;
+  hospTime: number;
+}
+
+export interface IAnthropometries {
+  demographyID: string;
+  height: number;
+  weight: number;
+  bmi: number;
+  mUAC: number;
+  abdCirc: number;
+  systole: number;
+  diastole: number;
+}
+
+export interface IBpHistory {
+  demographyID: string;
+  systole: number;
+  diastole: number;
+  dateChecked: Date;
+}
+
+export interface ICharts {
+  demographyID: string;
+  comorbidities: string;
+  medications: string;
+}
+
+export interface ILabs {
+  demographyID: number;
+  cholesterol: number;
+  hdl: number;
+  ldl: number;
+  trigly: number;
+  bun: number;
+  creat: number;
+  physicianDocs: number;
+  followUp: boolean;
+}
+
+export interface IQualityAssessments {
+  demographyID: string;
+  healthScale: number;
+  compared: number;
+  vigorous: number;
+  moderate: number;
+  climbing: number;
+  bending: number;
+  walkingMile: number;
+  walkingBlocks: number;
+  walkingOne: number;
+  bathingSelf: number;
+  cutDown: number;
+  accomplishLess: number;
+  wereLimited: number;
+  hadDiff: number;
+  cutDownEm: number;
+  accomplishEm: number;
+  wasCareful: number;
+  emotionInterfere: number;
+  bodyPainIn4: number;
+  bodyPainInHouse: number;
+  hasPep: number;
+  isNervous: number;
+  isDump: number;
+  wasPeaceful: number;
+  hasEnergy: number;
+  wasDownhearted: number;
+  wasWornOut: number;
+  beenHappy: number;
+  feelTired: number;
+  socialInterfere: number;
+  sickEasier: number;
+  veryHealthy: number;
+  toGetWorse: number;
+  isExcellent: number;
+}
+
+export interface ISocioFactors {
+  demographyID: string;
+  financeDiffs: boolean;
+  hasConcerns: boolean;
+  concerns: string;
+  hasAssitance: boolean;
+  takesHerbal: number;
+  seenDietician: number;
+  believeDiet: number;
+  specialDiet: number;
+  physicalActivity: boolean;
+  walking: boolean;
+  running: boolean;
+  others: string;
+  oftenPhysical: number;
+  cigarette: boolean;
+  howLongCig: number;
+  numberPerDay: number;
+  currentDrink: boolean;
+  everDrunk: boolean;
+  howLongAlc: number;
+  unitsPerWeek: number;
+  isRiskStroke: boolean;
+  isRiskHeartAttack: boolean;
+  isRiskDiabetes: boolean;
+  isRiskBlind: boolean;
+  isRiskKidney: boolean;
+  dieEarly: boolean;
+  feelSad: boolean;
+  doctorWish: string;
+};

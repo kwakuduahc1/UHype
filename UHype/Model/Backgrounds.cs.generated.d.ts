@@ -1,6 +1,6 @@
 declare module Server.Dtos {
 	interface Demography {
-		demographyID: any;
+		demographyID: number;
 		isSelf: any;
 		facility: string;
 		age: string;
@@ -11,7 +11,7 @@ declare module Server.Dtos {
 		education: string;
 		dateAdded: Date;
 		secondSections: {
-			demographyID: any;
+			demographyID: number;
 			hasPressure: any;
 			screening: boolean;
 			visit: boolean;
@@ -79,20 +79,15 @@ declare module Server.Dtos {
 			demography: Server.Dtos.Demography;
 		};
 		bpHistory: {
-			demographyID: any;
+			demographyID: number;
 			systole: number;
 			diastole: number;
 			dateChecked: Date;
 			demography: Server.Dtos.Demography;
 		};
-		charts: {
-			demographyID: any;
-			comorbidities: string;
-			medications: string;
-			demography: Server.Dtos.Demography;
-		};
+		charts: any[];
 		labs: {
-			demographyID: any;
+			demographyID: number;
 			cholesterol: number;
 			hdl: number;
 			ldl: number;
@@ -104,7 +99,7 @@ declare module Server.Dtos {
 			demography: Server.Dtos.Demography;
 		};
 		qualityAssessments: {
-			demographyID: any;
+			demographyID: number;
 			healthScale: any;
 			compared: any;
 			vigorous: any;
@@ -142,7 +137,7 @@ declare module Server.Dtos {
 			demography: Server.Dtos.Demography;
 		};
 		socioFactors: {
-			demographyID: any;
+			demographyID: number;
 			financeDiffs: boolean;
 			hasConcerns: boolean;
 			concerns: string;

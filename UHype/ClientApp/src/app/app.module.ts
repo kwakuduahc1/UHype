@@ -16,6 +16,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 import { HttpXsrfInterceptor } from './interceptors/XSRF_Interceptor';
 import { HttpInterceptorProviders } from './interceptors/InterceptorProviders';
+import { BioDataComponent } from './components/data-entry/bio-data/bio-data.component';
 
 
 export function jwtOptionsFactory(tokenService) {
@@ -33,7 +34,8 @@ export function jwtOptionsFactory(tokenService) {
     NavMenuComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    BioDataComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -53,7 +55,8 @@ export function jwtOptionsFactory(tokenService) {
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'home', redirectTo: '', pathMatch: 'full' }
+      { path: 'home', redirectTo: '', pathMatch: 'full' },
+      { path: 'data-entry', component: BioDataComponent }
     ])
   ],
   providers: [

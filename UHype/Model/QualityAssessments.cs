@@ -9,7 +9,7 @@ namespace UHype.Model
         [Required]
         [ForeignKey(nameof(Demography))]
         [Key]
-        public Guid DemographyID { get; set; }
+        public int DemographyID { get; set; }
 
         [Required]
         [Range(0, 4)]

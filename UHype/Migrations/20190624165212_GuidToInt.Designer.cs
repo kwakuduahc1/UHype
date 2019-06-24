@@ -10,8 +10,8 @@ using UHype.Model;
 namespace UHype.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190620154345_AddAppUsers")]
-    partial class AddAppUsers
+    [Migration("20190624165212_GuidToInt")]
+    partial class GuidToInt
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -194,7 +194,7 @@ namespace UHype.Migrations
 
             modelBuilder.Entity("UHype.Model.Anthropometries", b =>
                 {
-                    b.Property<Guid>("DemographyID");
+                    b.Property<int>("DemographyID");
 
                     b.Property<double>("AbdCirc");
 
@@ -217,7 +217,7 @@ namespace UHype.Migrations
 
             modelBuilder.Entity("UHype.Model.BpHistory", b =>
                 {
-                    b.Property<Guid>("DemographyID");
+                    b.Property<int>("DemographyID");
 
                     b.Property<DateTime>("DateChecked");
 
@@ -232,23 +232,30 @@ namespace UHype.Migrations
 
             modelBuilder.Entity("UHype.Model.Charts", b =>
                 {
-                    b.Property<Guid>("DemographyID");
+                    b.Property<int>("ChartsID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Comorbidities")
+                    b.Property<string>("Comorbidity")
                         .HasMaxLength(200);
 
-                    b.Property<string>("Medications")
+                    b.Property<int>("DemographyID");
+
+                    b.Property<string>("Medication")
                         .HasMaxLength(150);
 
-                    b.HasKey("DemographyID");
+                    b.HasKey("ChartsID");
+
+                    b.HasIndex("DemographyID");
 
                     b.ToTable("Charts");
                 });
 
             modelBuilder.Entity("UHype.Model.Demography", b =>
                 {
-                    b.Property<Guid>("DemographyID")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("DemographyID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Age")
                         .IsRequired()
@@ -288,7 +295,7 @@ namespace UHype.Migrations
 
             modelBuilder.Entity("UHype.Model.Labs", b =>
                 {
-                    b.Property<Guid>("DemographyID");
+                    b.Property<int>("DemographyID");
 
                     b.Property<double>("Bun");
 
@@ -313,7 +320,7 @@ namespace UHype.Migrations
 
             modelBuilder.Entity("UHype.Model.QualityAssessments", b =>
                 {
-                    b.Property<Guid>("DemographyID");
+                    b.Property<int>("DemographyID");
 
                     b.Property<byte>("AccomplishEm");
 
@@ -390,7 +397,7 @@ namespace UHype.Migrations
 
             modelBuilder.Entity("UHype.Model.SecondSections", b =>
                 {
-                    b.Property<Guid>("DemographyID");
+                    b.Property<int>("DemographyID");
 
                     b.Property<bool>("Admission");
 
@@ -508,7 +515,7 @@ namespace UHype.Migrations
 
             modelBuilder.Entity("UHype.Model.SocioFactors", b =>
                 {
-                    b.Property<Guid>("DemographyID");
+                    b.Property<int>("DemographyID");
 
                     b.Property<byte>("BelieveDiet");
 
@@ -652,8 +659,8 @@ namespace UHype.Migrations
             modelBuilder.Entity("UHype.Model.Charts", b =>
                 {
                     b.HasOne("UHype.Model.Demography", "Demography")
-                        .WithOne("Charts")
-                        .HasForeignKey("UHype.Model.Charts", "DemographyID")
+                        .WithMany("Charts")
+                        .HasForeignKey("DemographyID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

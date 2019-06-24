@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace UHype.Migrations
 {
-    public partial class Initial : Migration
+    public partial class GuidToInt : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,7 +27,7 @@ namespace UHype.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true),
+                    UserName = table.Column<string>(maxLength: 256, nullable: false),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
@@ -40,7 +40,10 @@ namespace UHype.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false),
+                    Team = table.Column<string>(maxLength: 10, nullable: true),
+                    Facility = table.Column<string>(maxLength: 20, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -51,9 +54,10 @@ namespace UHype.Migrations
                 name: "Demography",
                 columns: table => new
                 {
-                    DemographyID = table.Column<Guid>(nullable: false),
+                    DemographyID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     IsSelf = table.Column<byte>(nullable: false),
-                    Facility = table.Column<string>(maxLength: 50, nullable: false),
+                    Facility = table.Column<string>(maxLength: 50, nullable: true),
                     Age = table.Column<string>(maxLength: 6, nullable: false),
                     Marital = table.Column<string>(maxLength: 20, nullable: false),
                     Religion = table.Column<string>(maxLength: 20, nullable: false),
@@ -177,7 +181,7 @@ namespace UHype.Migrations
                 name: "Anthropometries",
                 columns: table => new
                 {
-                    DemographyID = table.Column<Guid>(nullable: false),
+                    DemographyID = table.Column<int>(nullable: false),
                     Height = table.Column<double>(nullable: false),
                     Weight = table.Column<double>(nullable: false),
                     Bmi = table.Column<double>(nullable: false),
@@ -201,7 +205,7 @@ namespace UHype.Migrations
                 name: "BpHistory",
                 columns: table => new
                 {
-                    DemographyID = table.Column<Guid>(nullable: false),
+                    DemographyID = table.Column<int>(nullable: false),
                     Systole = table.Column<double>(nullable: false),
                     Diastole = table.Column<double>(nullable: false),
                     DateChecked = table.Column<DateTime>(nullable: false)
@@ -221,13 +225,15 @@ namespace UHype.Migrations
                 name: "Charts",
                 columns: table => new
                 {
-                    DemographyID = table.Column<Guid>(nullable: false),
-                    Comorbidities = table.Column<string>(maxLength: 200, nullable: true),
-                    Medications = table.Column<string>(maxLength: 150, nullable: true)
+                    ChartsID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    DemographyID = table.Column<int>(nullable: false),
+                    Comorbidity = table.Column<string>(maxLength: 200, nullable: true),
+                    Medication = table.Column<string>(maxLength: 150, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Charts", x => x.DemographyID);
+                    table.PrimaryKey("PK_Charts", x => x.ChartsID);
                     table.ForeignKey(
                         name: "FK_Charts_Demography_DemographyID",
                         column: x => x.DemographyID,
@@ -240,7 +246,7 @@ namespace UHype.Migrations
                 name: "Labs",
                 columns: table => new
                 {
-                    DemographyID = table.Column<Guid>(nullable: false),
+                    DemographyID = table.Column<int>(nullable: false),
                     Cholesterol = table.Column<double>(nullable: false),
                     Hdl = table.Column<double>(nullable: false),
                     Ldl = table.Column<double>(nullable: false),
@@ -265,7 +271,7 @@ namespace UHype.Migrations
                 name: "QualityAssessments",
                 columns: table => new
                 {
-                    DemographyID = table.Column<Guid>(nullable: false),
+                    DemographyID = table.Column<int>(nullable: false),
                     HealthScale = table.Column<byte>(nullable: false),
                     Compared = table.Column<byte>(nullable: false),
                     Vigorous = table.Column<byte>(nullable: false),
@@ -316,7 +322,7 @@ namespace UHype.Migrations
                 name: "SecondSections",
                 columns: table => new
                 {
-                    DemographyID = table.Column<Guid>(nullable: false),
+                    DemographyID = table.Column<int>(nullable: false),
                     HasPressure = table.Column<byte>(nullable: false),
                     Screening = table.Column<bool>(nullable: false),
                     Visit = table.Column<bool>(nullable: false),
@@ -386,7 +392,7 @@ namespace UHype.Migrations
                 name: "SocioFactors",
                 columns: table => new
                 {
-                    DemographyID = table.Column<Guid>(nullable: false),
+                    DemographyID = table.Column<int>(nullable: false),
                     FinanceDiffs = table.Column<bool>(nullable: false),
                     HasConcerns = table.Column<bool>(nullable: false),
                     Concerns = table.Column<string>(maxLength: 50, nullable: true),
@@ -465,6 +471,11 @@ namespace UHype.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Charts_DemographyID",
+                table: "Charts",
+                column: "DemographyID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
