@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
+import { DataProvider } from 'src/app/providers/DataProvider';
 
 @Component({
   selector: 'bs-bio-data',
@@ -9,7 +10,7 @@ import { Meta, Title } from '@angular/platform-browser';
 })
 export class BioDataComponent implements OnInit {
 
-  constructor(fb: FormBuilder, meta: Meta, title: Title) {
+  constructor(fb: FormBuilder, meta: Meta, title: Title, data:DataProvider) {
     meta.addTags([{ name: 'description', content: "Page for data entry" }]);
     title.setTitle("Data Entry");
 

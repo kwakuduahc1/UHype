@@ -1,5 +1,5 @@
 export interface IDemography {
-  demographyID: string;
+  demographyID: number;
   isSelf: number;
   facility: string;
   age: string;
@@ -11,7 +11,7 @@ export interface IDemography {
   dateAdded: Date;
 }
 export interface ISecondSections {
-  demographyID: string;
+  demographyID: number;
   hasPressure: number;
   screening: boolean;
   visit: boolean;
@@ -68,7 +68,7 @@ export interface ISecondSections {
 }
 
 export interface IAnthropometries {
-  demographyID: string;
+  demographyID: number;
   height: number;
   weight: number;
   bmi: number;
@@ -79,16 +79,17 @@ export interface IAnthropometries {
 }
 
 export interface IBpHistory {
-  demographyID: string;
+  demographyID: number;
   systole: number;
   diastole: number;
   dateChecked: Date;
 }
 
 export interface ICharts {
-  demographyID: string;
-  comorbidities: string;
-  medications: string;
+  chartsID: number;
+  demographyID: number;
+  comorbidity: string;
+  medication: string;
 }
 
 export interface ILabs {
@@ -104,7 +105,7 @@ export interface ILabs {
 }
 
 export interface IQualityAssessments {
-  demographyID: string;
+  demographyID: number;
   healthScale: number;
   compared: number;
   vigorous: number;
@@ -142,7 +143,7 @@ export interface IQualityAssessments {
 }
 
 export interface ISocioFactors {
-  demographyID: string;
+  demographyID: number;
   financeDiffs: boolean;
   hasConcerns: boolean;
   concerns: string;
