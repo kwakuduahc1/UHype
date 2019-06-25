@@ -7,6 +7,8 @@ export interface IKeyValuePairs {
   value: number | boolean;
   label: string;
 }
+
+export const gender: IKeyValuePairs[] = [{ value: 0, label: "Female" }, { value: 1, label: "Male" }];
 export const educations: IKeyValuePairs[] = [
   { value: 0, label: "None" },
   { value: 1, label: "Primary School" },

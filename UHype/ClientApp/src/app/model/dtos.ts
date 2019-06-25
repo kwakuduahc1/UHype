@@ -9,6 +9,13 @@ export interface IDemography {
   occupation: string;
   education: string;
   dateAdded: Date;
+  secondSection: ISecondSections;
+  anthropometries: IAnthropometries;
+  bpHistory: IBpHistory;
+  charts: ICharts;
+  labs: ILabs;
+  qualityAssessments: IQualityAssessments;
+  SocioFactors: ISocioFactors;
 }
 export interface ISecondSections {
   demographyID: number;

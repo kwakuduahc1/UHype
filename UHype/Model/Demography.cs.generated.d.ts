@@ -5,6 +5,7 @@ declare module Server.Dtos {
 		facility: string;
 		age: string;
 		marital: string;
+		gender: any;
 		religion: string;
 		ethnicity: string;
 		occupation: string;
@@ -68,7 +69,7 @@ declare module Server.Dtos {
 			demography: Server.Dtos.Demography;
 		};
 		anthropometries: {
-			demographyID: any;
+			demographyID: number;
 			height: number;
 			weight: number;
 			bmi: number;

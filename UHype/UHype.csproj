@@ -26,17 +26,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Model\Backgrounds.cs">
+    <Compile Update="Model\Demography.cs">
       <Generator>DtsGenerator</Generator>
-      <LastGenOutput>Backgrounds.cs.generated.d.ts</LastGenOutput>
+      <LastGenOutput>Demography.cs.generated.d.ts</LastGenOutput>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Model\Backgrounds.cs.generated.d.ts">
+    <None Update="Model\Demography.cs.generated.d.ts">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Backgrounds.cs</DependentUpon>
+      <DependentUpon>Demography.cs</DependentUpon>
     </None>
   </ItemGroup>
 

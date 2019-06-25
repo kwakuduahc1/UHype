@@ -25,6 +25,10 @@ namespace UHype.Model
         public string Marital { get; set; }
 
         [Required]
+        [Range(0, 1)]
+        public byte Gender { get; set; }
+
+        [Required]
         [StringLength(20, MinimumLength = 5)]
         public string Religion { get; set; }
 
