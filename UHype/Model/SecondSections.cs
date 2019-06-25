@@ -34,7 +34,7 @@ namespace UHype.Model
         public bool IsControlled { get; set; }
 
         [Required]
-        public bool HasAdmiitedIn12 { get; set; }
+        public bool HasAdmitedIn12 { get; set; }
 
         [Required]
         public bool MeasureAtHome { get; set; }

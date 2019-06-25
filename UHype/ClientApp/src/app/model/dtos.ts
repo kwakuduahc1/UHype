@@ -3,6 +3,7 @@ export interface IDemography {
   isSelf: number;
   facility: string;
   age: string;
+  gender: number;
   marital: string;
   religion: string;
   ethnicity: string;
@@ -27,7 +28,7 @@ export interface ISecondSections {
   forgotten: boolean;
   others: string;
   isControlled: boolean;
-  hasAdmiitedIn12: boolean;
+  hasAdmitedIn12: boolean;
   measureAtHome: boolean;
   relativesHBP: number;
   degree1: boolean;

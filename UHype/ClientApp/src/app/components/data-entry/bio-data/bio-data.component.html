@@ -1,113 +1,142 @@
 <h1 class="h1">Data Entry page</h1>
 <p>Please read the client right to him and ensure him/her of confidentiality</p>
 
-<form name="form" [formGroup]="form" id="form" (submit)="add(form.value)">
-  <fieldset>
-    <legend>Background information</legend>
-    <!-- isSelf -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-2">Self</label>
-      <div class="col-sm-3">
-        <input type="checkbox" formControlName="isSelf" class="form-control" />
-        <small>
-          <span [ngClass]="form.controls.isSelf.touched && form.controls.isSelf.errors?.min ? 'text-danger' : ''" *ngIf="form.controls.isSelf.touched && form.controls.isSelf.errors?.min">Minimum should be {{form.controls.isSelf.errors.min.min}}</span>
-          <span [ngClass]="form.controls.isSelf.touched && form.controls.isSelf.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.isSelf.touched && form.controls.isSelf.errors?.required">Required</span>
-          <span [ngClass]="form.controls.isSelf.touched && form.controls.isSelf.errors?.max ? 'text-danger' : ''" *ngIf="form.controls.isSelf.touched && form.controls.isSelf.errors?.max">Minimum should be {{form.controls.isSelf.errors.max.max}}</span>
-        </small>
+<div [hidden]="!sections[0].state">
+  <form name="form" [formGroup]="form" id="form" (submit)="addDem(form.value)">
+    <fieldset>
+      <legend>Section {{sections[0].section}} : {{sections[0].label}}</legend>
+      <!-- isSelf -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-2">Self</label>
+        <div class="col-sm-3">
+          <input type="checkbox" formControlName="isSelf" class="form-control" />
+          <small>
+            <span [ngClass]="form.controls.isSelf.touched && form.controls.isSelf.errors?.min ? 'text-danger' : ''" *ngIf="form.controls.isSelf.touched && form.controls.isSelf.errors?.min">Minimum should be {{form.controls.isSelf.errors.min.min}}</span>
+            <span [ngClass]="form.controls.isSelf.touched && form.controls.isSelf.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.isSelf.touched && form.controls.isSelf.errors?.required">Required</span>
+            <span [ngClass]="form.controls.isSelf.touched && form.controls.isSelf.errors?.max ? 'text-danger' : ''" *ngIf="form.controls.isSelf.touched && form.controls.isSelf.errors?.max">Minimum should be {{form.controls.isSelf.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- Age -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-2">Age</label>
-      <div class="col-sm-3">
-        <input type="number" formControlName="age" class="form-control" placeholder="Age" />
-        <small>
-          <span [ngClass]="form.controls.age.touched && form.controls.age.errors?.min ? 'text-danger' : ''" *ngIf="form.controls.age.touched && form.controls.age.errors?.min">Minimum should be {{form.controls.age.errors.min.min}}</span>
-          <span [ngClass]="form.controls.age.touched && form.controls.age.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.age.touched && form.controls.age.errors?.required">Required</span>
-          <span [ngClass]="form.controls.age.touched && form.controls.age.errors?.max ? 'text-danger' : ''" *ngIf="form.controls.age.touched && form.controls.age.errors?.max">Minimum should be {{form.controls.age.errors.max.max}}</span>
-        </small>
+      <!-- Age -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-2">Age</label>
+        <div class="col-sm-3">
+          <input type="number" formControlName="age" class="form-control" placeholder="Age" />
+          <small>
+            <span [ngClass]="form.controls.age.touched && form.controls.age.errors?.min ? 'text-danger' : ''" *ngIf="form.controls.age.touched && form.controls.age.errors?.min">Minimum should be {{form.controls.age.errors.min.min}}</span>
+            <span [ngClass]="form.controls.age.touched && form.controls.age.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.age.touched && form.controls.age.errors?.required">Required</span>
+            <span [ngClass]="form.controls.age.touched && form.controls.age.errors?.max ? 'text-danger' : ''" *ngIf="form.controls.age.touched && form.controls.age.errors?.max">Minimum should be {{form.controls.age.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- gender -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-2">Gender</label>
-      <div class="col-sm-3">
-        <select type="checkbox" formControlName="gender" class="form-control">
-          <option *ngFor="let g of gens" [ngValue]="g.value">{{g.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form.controls.gender.touched && form.controls.gender.errors?.min ? 'text-danger' : ''" *ngIf="form.controls.gender.touched && form.controls.gender.errors?.min">Minimum should be {{form.controls.gender.errors.min.min}}</span>
-          <span [ngClass]="form.controls.gender.touched && form.controls.gender.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.gender.touched && form.controls.gender.errors?.required">Required</span>
-          <span [ngClass]="form.controls.gender.touched && form.controls.gender.errors?.max ? 'text-danger' : ''" *ngIf="form.controls.gender.touched && form.controls.gender.errors?.max">Minimum should be {{form.controls.gender.errors.max.max}}</span>
-        </small>
+      <!-- gender -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-2">Gender</label>
+        <div class="col-sm-3">
+          <select type="checkbox" formControlName="gender" class="form-control">
+            <option *ngFor="let g of gens" [ngValue]="g.value">{{g.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form.controls.gender.touched && form.controls.gender.errors?.min ? 'text-danger' : ''" *ngIf="form.controls.gender.touched && form.controls.gender.errors?.min">Minimum should be {{form.controls.gender.errors.min.min}}</span>
+            <span [ngClass]="form.controls.gender.touched && form.controls.gender.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.gender.touched && form.controls.gender.errors?.required">Required</span>
+            <span [ngClass]="form.controls.gender.touched && form.controls.gender.errors?.max ? 'text-danger' : ''" *ngIf="form.controls.gender.touched && form.controls.gender.errors?.max">Minimum should be {{form.controls.gender.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- marital -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-2">Marital Status</label>
-      <div class="col-sm-3">
-        <select type="checkbox" formControlName="marital" class="form-control">
-          <option *ngFor="let g of marts" [ngValue]="g.value">{{g.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form.controls.marital.touched && form.controls.marital.errors?.min ? 'text-danger' : ''" *ngIf="form.controls.marital.touched && form.controls.marital.errors?.min">Minimum should be {{form.controls.marital.errors.min.min}}</span>
-          <span [ngClass]="form.controls.marital.touched && form.controls.marital.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.marital.touched && form.controls.marital.errors?.required">Required</span>
-          <span [ngClass]="form.controls.marital.touched && form.controls.marital.errors?.max ? 'text-danger' : ''" *ngIf="form.controls.marital.touched && form.controls.marital.errors?.max">Minimum should be {{form.controls.marital.errors.max.max}}</span>
-        </small>
+      <!-- marital -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-2">Marital Status</label>
+        <div class="col-sm-3">
+          <select type="checkbox" formControlName="marital" class="form-control">
+            <option *ngFor="let g of marts" [ngValue]="g.value">{{g.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form.controls.marital.touched && form.controls.marital.errors?.min ? 'text-danger' : ''" *ngIf="form.controls.marital.touched && form.controls.marital.errors?.min">Minimum should be {{form.controls.marital.errors.min.min}}</span>
+            <span [ngClass]="form.controls.marital.touched && form.controls.marital.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.marital.touched && form.controls.marital.errors?.required">Required</span>
+            <span [ngClass]="form.controls.marital.touched && form.controls.marital.errors?.max ? 'text-danger' : ''" *ngIf="form.controls.marital.touched && form.controls.marital.errors?.max">Minimum should be {{form.controls.marital.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- religion -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-2">Religion</label>
-      <div class="col-sm-3">
-        <select type="checkbox" formControlName="religion" class="form-control">
-          <option *ngFor="let r of rels" [ngValue]="r.value">{{r.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form.controls.religion.touched && form.controls.religion.errors?.min ? 'text-danger' : ''" *ngIf="form.controls.religion.touched && form.controls.religion.errors?.min">Minimum should be {{form.controls.religion.errors.min.min}}</span>
-          <span [ngClass]="form.controls.religion.touched && form.controls.religion.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.religion.touched && form.controls.religion.errors?.required">Required</span>
-          <span [ngClass]="form.controls.religion.touched && form.controls.religion.errors?.max ? 'text-danger' : ''" *ngIf="form.controls.religion.touched && form.controls.religion.errors?.max">Minimum should be {{form.controls.religion.errors.max.max}}</span>
-        </small>
+      <!-- religion -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-2">Religion</label>
+        <div class="col-sm-3">
+          <select type="checkbox" formControlName="religion" class="form-control">
+            <option *ngFor="let r of rels" [ngValue]="r.value">{{r.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form.controls.religion.touched && form.controls.religion.errors?.min ? 'text-danger' : ''" *ngIf="form.controls.religion.touched && form.controls.religion.errors?.min">Minimum should be {{form.controls.religion.errors.min.min}}</span>
+            <span [ngClass]="form.controls.religion.touched && form.controls.religion.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.religion.touched && form.controls.religion.errors?.required">Required</span>
+            <span [ngClass]="form.controls.religion.touched && form.controls.religion.errors?.max ? 'text-danger' : ''" *ngIf="form.controls.religion.touched && form.controls.religion.errors?.max">Minimum should be {{form.controls.religion.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- ethnicity -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-2">Ethnicity</label>
-      <div class="col-sm-3">
-        <select type="checkbox" formControlName="ethnicity" class="form-control">
-          <option *ngFor="let e of eths" [ngValue]="e.value">{{e.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form.controls.ethnicity.touched && form.controls.ethnicity.errors?.min ? 'text-danger' : ''" *ngIf="form.controls.ethnicity.touched && form.controls.ethnicity.errors?.min">Minimum should be {{form.controls.ethnicity.errors.min.min}}</span>
-          <span [ngClass]="form.controls.ethnicity.touched && form.controls.ethnicity.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.ethnicity.touched && form.controls.ethnicity.errors?.required">Required</span>
-          <span [ngClass]="form.controls.ethnicity.touched && form.controls.ethnicity.errors?.max ? 'text-danger' : ''" *ngIf="form.controls.ethnicity.touched && form.controls.ethnicity.errors?.max">Minimum should be {{form.controls.ethnicity.errors.max.max}}</span>
-        </small>
+      <!-- ethnicity -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-2">Ethnicity</label>
+        <div class="col-sm-3">
+          <select type="checkbox" formControlName="ethnicity" class="form-control">
+            <option *ngFor="let e of eths" [ngValue]="e.value">{{e.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form.controls.ethnicity.touched && form.controls.ethnicity.errors?.min ? 'text-danger' : ''" *ngIf="form.controls.ethnicity.touched && form.controls.ethnicity.errors?.min">Minimum should be {{form.controls.ethnicity.errors.min.min}}</span>
+            <span [ngClass]="form.controls.ethnicity.touched && form.controls.ethnicity.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.ethnicity.touched && form.controls.ethnicity.errors?.required">Required</span>
+            <span [ngClass]="form.controls.ethnicity.touched && form.controls.ethnicity.errors?.max ? 'text-danger' : ''" *ngIf="form.controls.ethnicity.touched && form.controls.ethnicity.errors?.max">Minimum should be {{form.controls.ethnicity.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- education -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-2">Education</label>
-      <div class="col-sm-3">
-        <select type="checkbox" formControlName="education" class="form-control">
-          <option *ngFor="let o of occs" [ngValue]="o.value">{{o.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form.controls.education.touched && form.controls.education.errors?.min ? 'text-danger' : ''" *ngIf="form.controls.education.touched && form.controls.education.errors?.min">Minimum should be {{form.controls.education.errors.min.min}}</span>
-          <span [ngClass]="form.controls.education.touched && form.controls.education.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.education.touched && form.controls.education.errors?.required">Required</span>
-          <span [ngClass]="form.controls.education.touched && form.controls.education.errors?.max ? 'text-danger' : ''" *ngIf="form.controls.education.touched && form.controls.education.errors?.max">Minimum should be {{form.controls.education.errors.max.max}}</span>
-        </small>
+      <!-- education -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-2">Education</label>
+        <div class="col-sm-3">
+          <select type="checkbox" formControlName="education" class="form-control">
+            <option *ngFor="let e of educs" [ngValue]="e.value">{{e.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form.controls.education.touched && form.controls.education.errors?.min ? 'text-danger' : ''" *ngIf="form.controls.education.touched && form.controls.education.errors?.min">Minimum should be {{form.controls.education.errors.min.min}}</span>
+            <span [ngClass]="form.controls.education.touched && form.controls.education.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.education.touched && form.controls.education.errors?.required">Required</span>
+            <span [ngClass]="form.controls.education.touched && form.controls.education.errors?.max ? 'text-danger' : ''" *ngIf="form.controls.education.touched && form.controls.education.errors?.max">Minimum should be {{form.controls.education.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <div class="col-md-offset-2 btn-group">
-      <button [disabled]="form.invalid || act.isProcessing" type="submit" [ngClass]="form.invalid ? 'btn-danger' : 'btn-success'" class="btn">Add Transaction</button>
-    </div>
-    <div [ngClass]="act.isError ? 'alert-danger' : 'alert-info'">{{act.message}}</div>
-  </fieldset>
-</form>
+      <!-- occupation -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-2">Occupation</label>
+        <div class="col-sm-3">
+          <select type="checkbox" formControlName="occupation" class="form-control">
+            <option *ngFor="let o of occs" [ngValue]="o.value">{{o.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form.controls.occupation.touched && form.controls.occupation.errors?.min ? 'text-danger' : ''" *ngIf="form.controls.occupation.touched && form.controls.occupation.errors?.min">Minimum should be {{form.controls.occupation.errors.min.min}}</span>
+            <span [ngClass]="form.controls.occupation.touched && form.controls.occupation.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.occupation.touched && form.controls.occupation.errors?.required">Required</span>
+            <span [ngClass]="form.controls.occupation.touched && form.controls.occupation.errors?.max ? 'text-danger' : ''" *ngIf="form.controls.occupation.touched && form.controls.occupation.errors?.max">Minimum should be {{form.controls.occupation.errors.max.max}}</span>
+          </small>
+        </div>
+      </div>
+      <div class="col-md-offset-2 btn-group">
+        <button [disabled]="form.invalid || act.isProcessing" type="submit" [ngClass]="form.invalid ? 'btn-outline-danger' : 'btn-outline-success'" class="btn">Save</button>
+      </div>
+      <div [ngClass]="act.isError ? 'alert-danger' : 'alert-info'">{{act.message}}</div>
+    </fieldset>
+  </form>
+</div>
+
+<div [hidden]="!sections[1].state">
+  <form name="form2" [formGroup]="form2" id="form2" (submit)="addDem(form2.value)">
+    <fieldset>
+      <legend>Section {{sections[1].section}} : {{sections[1].label}}</legend>
+      <div class="col-md-offset-2 btn-group">
+        <button [disabled]="form.invalid || act.isProcessing" type="submit" [ngClass]="form.invalid ? 'btn-outline-danger' : 'btn-outline-success'" class="btn">Save</button>
+        <button [disabled]="act.isProcessing" type="button" (click)="prev(1)" [ngClass]="form.invalid ? 'btn-outline-danger' : 'btn-outline-secondary'" class="btn">Previous</button>
+      </div>
+      <div [ngClass]="act.isError ? 'alert-danger' : 'alert-info'">{{act.message}}</div>
+    </fieldset>
+  </form>
+</div>
