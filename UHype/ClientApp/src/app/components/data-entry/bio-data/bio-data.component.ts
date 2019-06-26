@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { DataProvider } from 'src/app/providers/DataProvider';
-import { maritalStatuses, educations, religions, energies, occupation, gender, Ethnics } from 'src/app/model/constants';
+import { maritalStatuses, educations, religions, energies, occupation, gender, ethnics, sections, tripples, yesNos, knows } from 'src/app/model/constants';
 import { ActivityProvider } from 'src/app/providers/ActivityProvider';
 import { IDemography } from 'src/app/model/dtos';
 import { state } from '@angular/animations';
@@ -17,18 +17,14 @@ export class BioDataComponent implements OnInit {
   form2: FormGroup;
   marts = maritalStatuses;
   rels = religions;
-  eths = Ethnics;
+  eths = ethnics;
   occs = occupation;
   educs = educations;
   gens = gender;
-  sections: Array<{ section: number, state: boolean, label: string }> = [
-    { section: 1, state: true, label: "Demographic Information" },
-    { section: 2, state: false, label: "Hypertension, Co-morbidities and Medications" },
-    { section: 3, state: false, label: "Social factors and beliefs" },
-    { section: 4, state: false, label: "Health related quality assessment of life" },
-    { section: 5, state: false, label: "Anthropometry" },
-    { section: 7, state: false, label: "Labs and others" }
-  ]
+  sections = sections;
+  trips = tripples;
+  bools = yesNos;
+  knows = knows;
   constructor(fb: FormBuilder, meta: Meta, title: Title, private data: DataProvider, public act: ActivityProvider) {
     meta.addTags([{ name: 'description', content: "Page for data entry" }]);
     title.setTitle("Data Entry");
@@ -45,10 +41,6 @@ export class BioDataComponent implements OnInit {
     this.form2 = fb.group({
       hasPressure: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(3)])],
       screening: [false, Validators.compose([Validators.required])],
-      visit: [false, Validators.compose([Validators.required])],
-      pharmacy: [false, Validators.compose([Validators.required])],
-      admission: [false, Validators.compose([Validators.required])],
-      forgotten: [false, Validators.compose([Validators.required])],
       others: ["", Validators.compose([Validators.minLength(3), Validators.maxLength(50)])],
       isControlled: [false, Validators.compose([Validators.required])],
       hasAdmittedIn12: [false, Validators.compose([Validators.required])],
@@ -66,7 +58,7 @@ export class BioDataComponent implements OnInit {
       cAD: [false, Validators.compose([Validators.required])],
       hyperLip: [false, Validators.compose([Validators.required])],
       pain: [false, Validators.compose([Validators.required])],
-      othersCND: [false, Validators.compose([Validators.required])],
+      othersCND: [, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
       hPTMeds: ["", Validators.compose([Validators.required, Validators.min(1), Validators.max(3)])],
       amlodipine: [false, Validators.compose([Validators.required])],
       lisinopril: [false, Validators.compose([Validators.required])],
@@ -112,5 +104,12 @@ export class BioDataComponent implements OnInit {
   prev(ix: number) {
     this.sections.forEach(x => x.state = false);
     this.sections[ix - 1].state = true;
+  }
+
+  showKnowOther = false;
+  changeKnow(ix: number) {
+    if (ix === 5)
+      this.showKnowOther = true;
+    else this.showKnowOther = false;
   }
 }

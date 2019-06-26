@@ -8,6 +8,14 @@ export interface IKeyValuePairs {
   label: string;
 }
 
+export const sections: Array<{ section: number, state: boolean, label: string }> = [
+  { section: 1, state: true, label: "Demographic Information" },
+  { section: 2, state: false, label: "Hypertension, Co-morbidities and Medications" },
+  { section: 3, state: false, label: "Social factors and beliefs" },
+  { section: 4, state: false, label: "Health related quality assessment of life" },
+  { section: 5, state: false, label: "Anthropometry" },
+  { section: 7, state: false, label: "Labs and others" }]
+
 export const gender: IKeyValuePairs[] = [{ value: 0, label: "Female" }, { value: 1, label: "Male" }];
 export const educations: IKeyValuePairs[] = [
   { value: 0, label: "None" },
@@ -45,7 +53,7 @@ export const maritalStatuses: IKeyValuePairs[] = [
   { value: 4, label: "Co - habiting" },
   { value: 5, label: "Widowed" }];
 
-export const Ethnics: IKeyValuePairs[] = [
+export const ethnics: IKeyValuePairs[] = [
   { value: 1, label: "Ashanti" },
   { value: 2, label: "Akyem" },
   { value: 3, label: "Fante" },
@@ -72,6 +80,13 @@ export const religions: IKeyValuePairs[] = [{ label: "Christian", value: 1 },
 { label: "Animism/African Traditional Religion", value: 3 },
 { label: "Atheist", value: 4 },
 { label: "Others", value: 5 }];
+
+export const knows: IKeyValuePairs[] = [
+  { value: 1, label: "Screening program" },
+  { value: 2, label: "Visit to the clinic" },
+  { value: 3, label: "At the pharmacy store" },
+  { value: 4, label: "I do not remember" },
+  { value: 5, label: "Others" }]
 
 export const tripples: IKeyValuePairs[] = [{ value: 0, label: "No" }, { value: 1, label: "Yes" }, { value: 3, label: "Don't know" }];
 
