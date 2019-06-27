@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { DataProvider } from 'src/app/providers/DataProvider';
-import { maritalStatuses, educations, religions, energies, occupation, gender, ethnics, sections, tripples, yesNos, knows } from 'src/app/model/constants';
+import { maritalStatuses, educations, religions, energies, occupation, gender, ethnics, sections, tripples, yesNos, knows, drugSrcs } from 'src/app/model/constants';
 import { ActivityProvider } from 'src/app/providers/ActivityProvider';
 import { IDemography } from 'src/app/model/dtos';
-import { state } from '@angular/animations';
 
 @Component({
   selector: 'bs-bio-data',
@@ -25,6 +24,7 @@ export class BioDataComponent implements OnInit {
   trips = tripples;
   bools = yesNos;
   knows = knows;
+  srcs = drugSrcs;
   constructor(fb: FormBuilder, meta: Meta, title: Title, private data: DataProvider, public act: ActivityProvider) {
     meta.addTags([{ name: 'description', content: "Page for data entry" }]);
     title.setTitle("Data Entry");

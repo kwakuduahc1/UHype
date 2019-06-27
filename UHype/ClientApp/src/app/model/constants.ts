@@ -126,3 +126,11 @@ export const bpControls: IKeyValuePairs[] = [
   { value: 1, label: "Uncontrolled " },
   { value: 0, label: "None" }
 ];
+
+export const drugSrcs: IKeyValuePairs[] = [
+  { value: 1, label: "All given at the hospital with NHIS" },
+  { value: 2, label: "Some at the hospital and the rest at a close - by pharmacy with NHIS" },
+  { value: 3, label: "Some at the hospital, others at a close by pharmacy and the rest purchased later" },
+  { value: 4, label: "All at a close - by pharmacy with NHIS" },
+  { value: 5, label: "All purchased at the hospital" }
+]
