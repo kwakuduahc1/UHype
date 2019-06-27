@@ -129,564 +129,671 @@
   </form>
 </div>
 
-<!--<div [hidden]="!sections[1].state">-->
-<form name="form2" [formGroup]="form2" id="form2" (submit)="addDem(form2.value)">
-  <fieldset>
-    <legend>Section {{sections[1].section}} : {{sections[1].label}}</legend>
+<div [hidden]="!sections[1].state">
+  <form name="form2" [formGroup]="form2" id="form2" (submit)="addSec2(form2.value)">
+    <fieldset>
+      <legend>Section {{sections[1].section}} : {{sections[1].label}}</legend>
 
-    <!-- hasPressure -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Do you have high blood pressure</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="hasPressure" class="form-control">
-          <option *ngFor="let h of trips" [ngValue]="h.value">{{h.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.hasPressure.touched && form2.controls.hasPressure.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.hasPressure.touched && form2.controls.hasPressure.errors?.min">Minimum should be {{form2.controls.hasPressure.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.hasPressure.touched && form2.controls.hasPressure.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hasPressure.touched && form2.controls.hasPressure.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.hasPressure.touched && form2.controls.hasPressure.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.hasPressure.touched && form2.controls.hasPressure.errors?.max">Minimum should be {{form2.controls.hasPressure.errors.max.max}}</span>
-        </small>
+      <!-- hasPressure -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Do you have high blood pressure</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="hasPressure" class="form-control">
+            <option *ngFor="let h of trips" [ngValue]="h.value">{{h.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.hasPressure.touched && form2.controls.hasPressure.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.hasPressure.touched && form2.controls.hasPressure.errors?.min">Minimum should be {{form2.controls.hasPressure.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.hasPressure.touched && form2.controls.hasPressure.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hasPressure.touched && form2.controls.hasPressure.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.hasPressure.touched && form2.controls.hasPressure.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.hasPressure.touched && form2.controls.hasPressure.errors?.max">Minimum should be {{form2.controls.hasPressure.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- screening -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">How did you know</label>
-      <div class="col-sm-2">
-        <select (change)="changeKnow(form2.controls.screening.value)" formControlName="screening" class="form-control">
-          <option *ngFor="let k of knows" [ngValue]="k.value">{{k.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.screening.touched && form2.controls.screening.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.screening.touched && form2.controls.screening.errors?.min">Minimum should be {{form2.controls.screening.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.screening.touched && form2.controls.screening.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.screening.touched && form2.controls.screening.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.screening.touched && form2.controls.screening.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.screening.touched && form2.controls.screening.errors?.max">Minimum should be {{form2.controls.screening.errors.max.max}}</span>
-        </small>
+      <!-- screening -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">How did you know</label>
+        <div class="col-sm-2">
+          <select (change)="changeKnow(form2.controls.screening.value)" formControlName="screening" class="form-control">
+            <option *ngFor="let k of knows" [ngValue]="k.value">{{k.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.screening.touched && form2.controls.screening.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.screening.touched && form2.controls.screening.errors?.min">Minimum should be {{form2.controls.screening.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.screening.touched && form2.controls.screening.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.screening.touched && form2.controls.screening.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.screening.touched && form2.controls.screening.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.screening.touched && form2.controls.screening.errors?.max">Minimum should be {{form2.controls.screening.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- others -->
-    <!-- isControlled -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">
-        Is your high blood pressure under control?
-      </label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="isControlled" class="form-control">
-          <option *ngFor="let h of trips" [ngValue]="h.value">{{h.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.isControlled.touched && form2.controls.isControlled.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.isControlled.touched && form2.controls.isControlled.errors?.min">Minimum should be {{form2.controls.isControlled.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.isControlled.touched && form2.controls.isControlled.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.isControlled.touched && form2.controls.isControlled.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.isControlled.touched && form2.controls.isControlled.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.isControlled.touched && form2.controls.isControlled.errors?.max">Minimum should be {{form2.controls.isControlled.errors.max.max}}</span>
-        </small>
+      <!-- others -->
+      <!-- isControlled -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">
+          Is your high blood pressure under control?
+        </label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="isControlled" class="form-control">
+            <option *ngFor="let h of trips" [ngValue]="h.value">{{h.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.isControlled.touched && form2.controls.isControlled.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.isControlled.touched && form2.controls.isControlled.errors?.min">Minimum should be {{form2.controls.isControlled.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.isControlled.touched && form2.controls.isControlled.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.isControlled.touched && form2.controls.isControlled.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.isControlled.touched && form2.controls.isControlled.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.isControlled.touched && form2.controls.isControlled.errors?.max">Minimum should be {{form2.controls.isControlled.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- hasAdmittedIn12 -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Admitted in the last 12 months on account HBP </label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="hasAdmittedIn12" class="form-control">
-          <option *ngFor="let h of trips" [ngValue]="h.value">{{h.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.hasAdmittedIn12.touched && form2.controls.hasAdmittedIn12.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.hasAdmittedIn12.touched && form2.controls.hasAdmittedIn12.errors?.min">Minimum should be {{form2.controls.hasAdmittedIn12.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.hasAdmittedIn12.touched && form2.controls.hasAdmittedIn12.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hasAdmittedIn12.touched && form2.controls.hasAdmittedIn12.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.hasAdmittedIn12.touched && form2.controls.hasAdmittedIn12.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.hasAdmittedIn12.touched && form2.controls.hasAdmittedIn12.errors?.max">Minimum should be {{form2.controls.hasAdmittedIn12.errors.max.max}}</span>
-        </small>
+      <!-- hasAdmittedIn12 -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Admitted in the last 12 months on account HBP </label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="hasAdmittedIn12" class="form-control">
+            <option *ngFor="let h of trips" [ngValue]="h.value">{{h.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.hasAdmittedIn12.touched && form2.controls.hasAdmittedIn12.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.hasAdmittedIn12.touched && form2.controls.hasAdmittedIn12.errors?.min">Minimum should be {{form2.controls.hasAdmittedIn12.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.hasAdmittedIn12.touched && form2.controls.hasAdmittedIn12.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hasAdmittedIn12.touched && form2.controls.hasAdmittedIn12.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.hasAdmittedIn12.touched && form2.controls.hasAdmittedIn12.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.hasAdmittedIn12.touched && form2.controls.hasAdmittedIn12.errors?.max">Minimum should be {{form2.controls.hasAdmittedIn12.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- measureAtHome -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Do you measure your BP at home</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="measureAtHome" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.measureAtHome.touched && form2.controls.measureAtHome.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.measureAtHome.touched && form2.controls.measureAtHome.errors?.min">Minimum should be {{form2.controls.measureAtHome.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.measureAtHome.touched && form2.controls.measureAtHome.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.measureAtHome.touched && form2.controls.measureAtHome.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.measureAtHome.touched && form2.controls.measureAtHome.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.measureAtHome.touched && form2.controls.measureAtHome.errors?.max">Minimum should be {{form2.controls.measureAtHome.errors.max.max}}</span>
-        </small>
+      <!-- measureAtHome -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Do you measure your BP at home</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="measureAtHome" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.measureAtHome.touched && form2.controls.measureAtHome.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.measureAtHome.touched && form2.controls.measureAtHome.errors?.min">Minimum should be {{form2.controls.measureAtHome.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.measureAtHome.touched && form2.controls.measureAtHome.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.measureAtHome.touched && form2.controls.measureAtHome.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.measureAtHome.touched && form2.controls.measureAtHome.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.measureAtHome.touched && form2.controls.measureAtHome.errors?.max">Minimum should be {{form2.controls.measureAtHome.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- relativesHBP -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Do you have any relatives with high blood pressure</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="relativesHBP" class="form-control">
-          <option *ngFor="let t of trips" [ngValue]="t.value">{{t.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.relativesHBP.touched && form2.controls.relativesHBP.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.relativesHBP.touched && form2.controls.relativesHBP.errors?.min">Minimum should be {{form2.controls.relativesHBP.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.relativesHBP.touched && form2.controls.relativesHBP.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.relativesHBP.touched && form2.controls.relativesHBP.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.relativesHBP.touched && form2.controls.relativesHBP.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.relativesHBP.touched && form2.controls.relativesHBP.errors?.max">Minimum should be {{form2.controls.relativesHBP.errors.max.max}}</span>
-        </small>
+      <!-- relativesHBP -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Do you have any relatives with high blood pressure</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="relativesHBP" class="form-control">
+            <option *ngFor="let t of trips" [ngValue]="t.value">{{t.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.relativesHBP.touched && form2.controls.relativesHBP.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.relativesHBP.touched && form2.controls.relativesHBP.errors?.min">Minimum should be {{form2.controls.relativesHBP.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.relativesHBP.touched && form2.controls.relativesHBP.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.relativesHBP.touched && form2.controls.relativesHBP.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.relativesHBP.touched && form2.controls.relativesHBP.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.relativesHBP.touched && form2.controls.relativesHBP.errors?.max">Minimum should be {{form2.controls.relativesHBP.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- degree1 -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">If yes, Specify</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="degree1" class="form-control">
-          <option *ngFor="let r of ['1st Degree', '2nd Degree', '3rd Degree']" [ngValue]="r">{{r}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.degree1.touched && form2.controls.degree1.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.degree1.touched && form2.controls.degree1.errors?.min">Minimum should be {{form2.controls.degree1.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.degree1.touched && form2.controls.degree1.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.degree1.touched && form2.controls.degree1.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.degree1.touched && form2.controls.degree1.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.degree1.touched && form2.controls.degree1.errors?.max">Minimum should be {{form2.controls.degree1.errors.max.max}}</span>
-        </small>
+      <!-- degree1 -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">If yes, Specify</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="degree1" class="form-control">
+            <option *ngFor="let r of ['1st Degree', '2nd Degree', '3rd Degree']" [ngValue]="r">{{r}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.degree1.touched && form2.controls.degree1.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.degree1.touched && form2.controls.degree1.errors?.min">Minimum should be {{form2.controls.degree1.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.degree1.touched && form2.controls.degree1.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.degree1.touched && form2.controls.degree1.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.degree1.touched && form2.controls.degree1.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.degree1.touched && form2.controls.degree1.errors?.max">Minimum should be {{form2.controls.degree1.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- chronicDisease -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Another chronic disease apart from HPT</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="chronicDisease" class="form-control">
-          <option *ngFor="let t of trips" [ngValue]="t.value">{{t.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.chronicDisease.touched && form2.controls.chronicDisease.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.chronicDisease.touched && form2.controls.chronicDisease.errors?.min">Minimum should be {{form2.controls.chronicDisease.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.chronicDisease.touched && form2.controls.chronicDisease.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.chronicDisease.touched && form2.controls.chronicDisease.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.chronicDisease.touched && form2.controls.chronicDisease.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.chronicDisease.touched && form2.controls.chronicDisease.errors?.max">Minimum should be {{form2.controls.chronicDisease.errors.max.max}}</span>
-        </small>
+      <!-- chronicDisease -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Another chronic disease apart from HPT</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="chronicDisease" class="form-control">
+            <option *ngFor="let t of trips" [ngValue]="t.value">{{t.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.chronicDisease.touched && form2.controls.chronicDisease.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.chronicDisease.touched && form2.controls.chronicDisease.errors?.min">Minimum should be {{form2.controls.chronicDisease.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.chronicDisease.touched && form2.controls.chronicDisease.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.chronicDisease.touched && form2.controls.chronicDisease.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.chronicDisease.touched && form2.controls.chronicDisease.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.chronicDisease.touched && form2.controls.chronicDisease.errors?.max">Minimum should be {{form2.controls.chronicDisease.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- diabetes -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Do you have diabetes?</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="diabetes" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.diabetes.touched && form2.controls.diabetes.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.diabetes.touched && form2.controls.diabetes.errors?.min">Minimum should be {{form2.controls.diabetes.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.diabetes.touched && form2.controls.diabetes.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.diabetes.touched && form2.controls.diabetes.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.diabetes.touched && form2.controls.diabetes.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.diabetes.touched && form2.controls.diabetes.errors?.max">Minimum should be {{form2.controls.diabetes.errors.max.max}}</span>
-        </small>
+      <!-- diabetes -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Do you have diabetes?</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="diabetes" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.diabetes.touched && form2.controls.diabetes.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.diabetes.touched && form2.controls.diabetes.errors?.min">Minimum should be {{form2.controls.diabetes.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.diabetes.touched && form2.controls.diabetes.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.diabetes.touched && form2.controls.diabetes.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.diabetes.touched && form2.controls.diabetes.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.diabetes.touched && form2.controls.diabetes.errors?.max">Minimum should be {{form2.controls.diabetes.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- cKD -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Do you have CKD?</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="cKD" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.cKD.touched && form2.controls.cKD.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.cKD.touched && form2.controls.cKD.errors?.min">Minimum should be {{form2.controls.cKD.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.cKD.touched && form2.controls.cKD.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.cKD.touched && form2.controls.cKD.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.cKD.touched && form2.controls.cKD.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.cKD.touched && form2.controls.cKD.errors?.max">Minimum should be {{form2.controls.cKD.errors.max.max}}</span>
-        </small>
+      <!-- cKD -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Do you have CKD?</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="cKD" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.cKD.touched && form2.controls.cKD.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.cKD.touched && form2.controls.cKD.errors?.min">Minimum should be {{form2.controls.cKD.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.cKD.touched && form2.controls.cKD.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.cKD.touched && form2.controls.cKD.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.cKD.touched && form2.controls.cKD.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.cKD.touched && form2.controls.cKD.errors?.max">Minimum should be {{form2.controls.cKD.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- heartFail -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Do you have heart failure?</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="heartFail" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.heartFail.touched && form2.controls.heartFail.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.heartFail.touched && form2.controls.heartFail.errors?.min">Minimum should be {{form2.controls.heartFail.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.heartFail.touched && form2.controls.heartFail.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.heartFail.touched && form2.controls.heartFail.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.heartFail.touched && form2.controls.heartFail.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.heartFail.touched && form2.controls.heartFail.errors?.max">Minimum should be {{form2.controls.heartFail.errors.max.max}}</span>
-        </small>
+      <!-- heartFail -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Do you have heart failure?</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="heartFail" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.heartFail.touched && form2.controls.heartFail.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.heartFail.touched && form2.controls.heartFail.errors?.min">Minimum should be {{form2.controls.heartFail.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.heartFail.touched && form2.controls.heartFail.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.heartFail.touched && form2.controls.heartFail.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.heartFail.touched && form2.controls.heartFail.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.heartFail.touched && form2.controls.heartFail.errors?.max">Minimum should be {{form2.controls.heartFail.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- stroke -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Do you have stroke?</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="stroke" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.stroke.touched && form2.controls.stroke.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.stroke.touched && form2.controls.stroke.errors?.min">Minimum should be {{form2.controls.stroke.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.stroke.touched && form2.controls.stroke.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.stroke.touched && form2.controls.stroke.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.stroke.touched && form2.controls.stroke.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.stroke.touched && form2.controls.stroke.errors?.max">Minimum should be {{form2.controls.stroke.errors.max.max}}</span>
-        </small>
+      <!-- stroke -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Do you have stroke?</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="stroke" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.stroke.touched && form2.controls.stroke.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.stroke.touched && form2.controls.stroke.errors?.min">Minimum should be {{form2.controls.stroke.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.stroke.touched && form2.controls.stroke.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.stroke.touched && form2.controls.stroke.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.stroke.touched && form2.controls.stroke.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.stroke.touched && form2.controls.stroke.errors?.max">Minimum should be {{form2.controls.stroke.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- dementia -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Do you have dementia?</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="dementia" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.dementia.touched && form2.controls.dementia.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.dementia.touched && form2.controls.dementia.errors?.min">Minimum should be {{form2.controls.dementia.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.dementia.touched && form2.controls.dementia.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.dementia.touched && form2.controls.dementia.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.dementia.touched && form2.controls.dementia.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.dementia.touched && form2.controls.dementia.errors?.max">Minimum should be {{form2.controls.dementia.errors.max.max}}</span>
-        </small>
+      <!-- dementia -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Do you have dementia?</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="dementia" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.dementia.touched && form2.controls.dementia.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.dementia.touched && form2.controls.dementia.errors?.min">Minimum should be {{form2.controls.dementia.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.dementia.touched && form2.controls.dementia.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.dementia.touched && form2.controls.dementia.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.dementia.touched && form2.controls.dementia.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.dementia.touched && form2.controls.dementia.errors?.max">Minimum should be {{form2.controls.dementia.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- atrialFib -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Atrial fibrillation</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="atrialFib" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.atrialFib.touched && form2.controls.atrialFib.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.atrialFib.touched && form2.controls.atrialFib.errors?.min">Minimum should be {{form2.controls.atrialFib.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.atrialFib.touched && form2.controls.atrialFib.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.atrialFib.touched && form2.controls.atrialFib.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.atrialFib.touched && form2.controls.atrialFib.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.atrialFib.touched && form2.controls.atrialFib.errors?.max">Minimum should be {{form2.controls.atrialFib.errors.max.max}}</span>
-        </small>
+      <!-- atrialFib -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Atrial fibrillation</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="atrialFib" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.atrialFib.touched && form2.controls.atrialFib.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.atrialFib.touched && form2.controls.atrialFib.errors?.min">Minimum should be {{form2.controls.atrialFib.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.atrialFib.touched && form2.controls.atrialFib.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.atrialFib.touched && form2.controls.atrialFib.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.atrialFib.touched && form2.controls.atrialFib.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.atrialFib.touched && form2.controls.atrialFib.errors?.max">Minimum should be {{form2.controls.atrialFib.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- prostate -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Prostate (Cancer/Enlargement)</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="prostate" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.prostate.touched && form2.controls.prostate.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.prostate.touched && form2.controls.prostate.errors?.min">Minimum should be {{form2.controls.prostate.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.prostate.touched && form2.controls.prostate.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.prostate.touched && form2.controls.prostate.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.prostate.touched && form2.controls.prostate.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.prostate.touched && form2.controls.prostate.errors?.max">Minimum should be {{form2.controls.prostate.errors.max.max}}</span>
-        </small>
+      <!-- prostate -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Prostate (Cancer/Enlargement)</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="prostate" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.prostate.touched && form2.controls.prostate.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.prostate.touched && form2.controls.prostate.errors?.min">Minimum should be {{form2.controls.prostate.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.prostate.touched && form2.controls.prostate.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.prostate.touched && form2.controls.prostate.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.prostate.touched && form2.controls.prostate.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.prostate.touched && form2.controls.prostate.errors?.max">Minimum should be {{form2.controls.prostate.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- cAD -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Coronary Artery Disease</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="cAD" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.cAD.touched && form2.controls.cAD.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.cAD.touched && form2.controls.cAD.errors?.min">Minimum should be {{form2.controls.cAD.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.cAD.touched && form2.controls.cAD.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.cAD.touched && form2.controls.cAD.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.cAD.touched && form2.controls.cAD.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.cAD.touched && form2.controls.cAD.errors?.max">Minimum should be {{form2.controls.cAD.errors.max.max}}</span>
-        </small>
+      <!-- cAD -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Coronary Artery Disease</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="cAD" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.cAD.touched && form2.controls.cAD.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.cAD.touched && form2.controls.cAD.errors?.min">Minimum should be {{form2.controls.cAD.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.cAD.touched && form2.controls.cAD.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.cAD.touched && form2.controls.cAD.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.cAD.touched && form2.controls.cAD.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.cAD.touched && form2.controls.cAD.errors?.max">Minimum should be {{form2.controls.cAD.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- hyperLip -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Hyperlipidemia</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="hyperLip" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.hyperLip.touched && form2.controls.hyperLip.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.hyperLip.touched && form2.controls.hyperLip.errors?.min">Minimum should be {{form2.controls.hyperLip.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.hyperLip.touched && form2.controls.hyperLip.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hyperLip.touched && form2.controls.hyperLip.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.hyperLip.touched && form2.controls.hyperLip.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.hyperLip.touched && form2.controls.hyperLip.errors?.max">Minimum should be {{form2.controls.hyperLip.errors.max.max}}</span>
-        </small>
+      <!-- hyperLip -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Hyperlipidemia</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="hyperLip" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.hyperLip.touched && form2.controls.hyperLip.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.hyperLip.touched && form2.controls.hyperLip.errors?.min">Minimum should be {{form2.controls.hyperLip.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.hyperLip.touched && form2.controls.hyperLip.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hyperLip.touched && form2.controls.hyperLip.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.hyperLip.touched && form2.controls.hyperLip.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.hyperLip.touched && form2.controls.hyperLip.errors?.max">Minimum should be {{form2.controls.hyperLip.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- pain -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Chronic Pain</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="pain" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.pain.touched && form2.controls.pain.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.pain.touched && form2.controls.pain.errors?.min">Minimum should be {{form2.controls.pain.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.pain.touched && form2.controls.pain.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.pain.touched && form2.controls.pain.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.pain.touched && form2.controls.pain.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.pain.touched && form2.controls.pain.errors?.max">Minimum should be {{form2.controls.pain.errors.max.max}}</span>
-        </small>
+      <!-- pain -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Chronic Pain</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="pain" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.pain.touched && form2.controls.pain.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.pain.touched && form2.controls.pain.errors?.min">Minimum should be {{form2.controls.pain.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.pain.touched && form2.controls.pain.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.pain.touched && form2.controls.pain.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.pain.touched && form2.controls.pain.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.pain.touched && form2.controls.pain.errors?.max">Minimum should be {{form2.controls.pain.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- othersCND -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Other Chronic Diseases</label>
-      <div class="col-sm-3">
-        <textarea type="number" formControlName="othersCND" class="form-control">
+      <!-- othersCND -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Other Chronic Diseases</label>
+        <div class="col-sm-3">
+          <textarea type="number" formControlName="othersCND" class="form-control">
         </textarea>
-        <small>
-          <span [ngClass]="form22.controls.othersCND.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.othersCND.touched && form2.controls.othersCND.errors?.maxlength">The maximum length is {{form2.controls.othersCND.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.othersCND.errors.maxlength.actualLength}}</span>
-          <span [ngClass]="form2.controls.othersCND.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.othersCND.touched && form2.controls.othersCND.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.othersCND.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.othersCND.touched && form2.controls.othersCND.errors?.minlength">The minimum length is {{form2.controls.othersCND.errors.minlength.requiredLength}} characters: Current is {{form2.controls.othersCND.errors.minlength.actualLength}}</span>
-        </small>
+          <small>
+            <span [ngClass]="form22.controls.othersCND.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.othersCND.touched && form2.controls.othersCND.errors?.maxlength">The maximum length is {{form2.controls.othersCND.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.othersCND.errors.maxlength.actualLength}}</span>
+            <span [ngClass]="form2.controls.othersCND.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.othersCND.touched && form2.controls.othersCND.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.othersCND.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.othersCND.touched && form2.controls.othersCND.errors?.minlength">The minimum length is {{form2.controls.othersCND.errors.minlength.requiredLength}} characters: Current is {{form2.controls.othersCND.errors.minlength.actualLength}}</span>
+          </small>
+        </div>
       </div>
-    </div>
-  </fieldset>
-  <fieldset>
-    <legend>Medications</legend>
-    <!-- hPTMeds -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Are you on any medications?</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="hPTMeds" class="form-control">
-          <option *ngFor="let b of trips" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.hPTMeds.touched && form2.controls.hPTMeds.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.hPTMeds.touched && form2.controls.hPTMeds.errors?.min">Minimum should be {{form2.controls.hPTMeds.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.hPTMeds.touched && form2.controls.hPTMeds.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hPTMeds.touched && form2.controls.hPTMeds.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.hPTMeds.touched && form2.controls.hPTMeds.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.hPTMeds.touched && form2.controls.hPTMeds.errors?.max">Minimum should be {{form2.controls.hPTMeds.errors.max.max}}</span>
-        </small>
+    </fieldset>
+    <fieldset>
+      <legend>Medications</legend>
+      <!-- hPTMeds -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Are you on any medications?</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="hPTMeds" class="form-control">
+            <option *ngFor="let b of trips" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.hPTMeds.touched && form2.controls.hPTMeds.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.hPTMeds.touched && form2.controls.hPTMeds.errors?.min">Minimum should be {{form2.controls.hPTMeds.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.hPTMeds.touched && form2.controls.hPTMeds.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hPTMeds.touched && form2.controls.hPTMeds.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.hPTMeds.touched && form2.controls.hPTMeds.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.hPTMeds.touched && form2.controls.hPTMeds.errors?.max">Minimum should be {{form2.controls.hPTMeds.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- amlodipine -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Amlodipine</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="amlodipine" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.amlodipine.touched && form2.controls.amlodipine.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.amlodipine.touched && form2.controls.amlodipine.errors?.min">Minimum should be {{form2.controls.amlodipine.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.amlodipine.touched && form2.controls.amlodipine.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.amlodipine.touched && form2.controls.amlodipine.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.amlodipine.touched && form2.controls.amlodipine.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.amlodipine.touched && form2.controls.amlodipine.errors?.max">Minimum should be {{form2.controls.amlodipine.errors.max.max}}</span>
-        </small>
+      <!-- amlodipine -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Amlodipine</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="amlodipine" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.amlodipine.touched && form2.controls.amlodipine.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.amlodipine.touched && form2.controls.amlodipine.errors?.min">Minimum should be {{form2.controls.amlodipine.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.amlodipine.touched && form2.controls.amlodipine.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.amlodipine.touched && form2.controls.amlodipine.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.amlodipine.touched && form2.controls.amlodipine.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.amlodipine.touched && form2.controls.amlodipine.errors?.max">Minimum should be {{form2.controls.amlodipine.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- lisinopril -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Lisinopril</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="lisinopril" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.lisinopril.touched && form2.controls.lisinopril.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.lisinopril.touched && form2.controls.lisinopril.errors?.min">Minimum should be {{form2.controls.lisinopril.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.lisinopril.touched && form2.controls.lisinopril.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.lisinopril.touched && form2.controls.lisinopril.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.lisinopril.touched && form2.controls.lisinopril.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.lisinopril.touched && form2.controls.lisinopril.errors?.max">Minimum should be {{form2.controls.lisinopril.errors.max.max}}</span>
-        </small>
+      <!-- lisinopril -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Lisinopril</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="lisinopril" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.lisinopril.touched && form2.controls.lisinopril.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.lisinopril.touched && form2.controls.lisinopril.errors?.min">Minimum should be {{form2.controls.lisinopril.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.lisinopril.touched && form2.controls.lisinopril.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.lisinopril.touched && form2.controls.lisinopril.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.lisinopril.touched && form2.controls.lisinopril.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.lisinopril.touched && form2.controls.lisinopril.errors?.max">Minimum should be {{form2.controls.lisinopril.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- losarta -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Losarta</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="losarta" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.losarta.touched && form2.controls.losarta.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.losarta.touched && form2.controls.losarta.errors?.min">Minimum should be {{form2.controls.losarta.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.losarta.touched && form2.controls.losarta.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.losarta.touched && form2.controls.losarta.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.losarta.touched && form2.controls.losarta.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.losarta.touched && form2.controls.losarta.errors?.max">Minimum should be {{form2.controls.losarta.errors.max.max}}</span>
-        </small>
+      <!-- losarta -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Losarta</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="losarta" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.losarta.touched && form2.controls.losarta.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.losarta.touched && form2.controls.losarta.errors?.min">Minimum should be {{form2.controls.losarta.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.losarta.touched && form2.controls.losarta.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.losarta.touched && form2.controls.losarta.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.losarta.touched && form2.controls.losarta.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.losarta.touched && form2.controls.losarta.errors?.max">Minimum should be {{form2.controls.losarta.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- bendro -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Bendro</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="bendro" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.bendro.touched && form2.controls.bendro.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.bendro.touched && form2.controls.bendro.errors?.min">Minimum should be {{form2.controls.bendro.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.bendro.touched && form2.controls.bendro.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.bendro.touched && form2.controls.bendro.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.bendro.touched && form2.controls.bendro.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.bendro.touched && form2.controls.bendro.errors?.max">Minimum should be {{form2.controls.bendro.errors.max.max}}</span>
-        </small>
+      <!-- bendro -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Bendro</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="bendro" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.bendro.touched && form2.controls.bendro.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.bendro.touched && form2.controls.bendro.errors?.min">Minimum should be {{form2.controls.bendro.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.bendro.touched && form2.controls.bendro.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.bendro.touched && form2.controls.bendro.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.bendro.touched && form2.controls.bendro.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.bendro.touched && form2.controls.bendro.errors?.max">Minimum should be {{form2.controls.bendro.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- hCTZ -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">HCTZ</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="hCTZ" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.hCTZ.touched && form2.controls.hCTZ.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.hCTZ.touched && form2.controls.hCTZ.errors?.min">Minimum should be {{form2.controls.hCTZ.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.hCTZ.touched && form2.controls.hCTZ.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hCTZ.touched && form2.controls.hCTZ.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.hCTZ.touched && form2.controls.hCTZ.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.hCTZ.touched && form2.controls.hCTZ.errors?.max">Minimum should be {{form2.controls.hCTZ.errors.max.max}}</span>
-        </small>
+      <!-- hCTZ -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">HCTZ</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="hCTZ" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.hCTZ.touched && form2.controls.hCTZ.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.hCTZ.touched && form2.controls.hCTZ.errors?.min">Minimum should be {{form2.controls.hCTZ.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.hCTZ.touched && form2.controls.hCTZ.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hCTZ.touched && form2.controls.hCTZ.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.hCTZ.touched && form2.controls.hCTZ.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.hCTZ.touched && form2.controls.hCTZ.errors?.max">Minimum should be {{form2.controls.hCTZ.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- atenolol -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Atenolol</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="atenolol" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.atenolol.touched && form2.controls.atenolol.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.atenolol.touched && form2.controls.atenolol.errors?.min">Minimum should be {{form2.controls.atenolol.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.atenolol.touched && form2.controls.atenolol.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.atenolol.touched && form2.controls.atenolol.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.atenolol.touched && form2.controls.atenolol.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.atenolol.touched && form2.controls.atenolol.errors?.max">Minimum should be {{form2.controls.atenolol.errors.max.max}}</span>
-        </small>
+      <!-- atenolol -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Atenolol</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="atenolol" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.atenolol.touched && form2.controls.atenolol.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.atenolol.touched && form2.controls.atenolol.errors?.min">Minimum should be {{form2.controls.atenolol.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.atenolol.touched && form2.controls.atenolol.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.atenolol.touched && form2.controls.atenolol.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.atenolol.touched && form2.controls.atenolol.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.atenolol.touched && form2.controls.atenolol.errors?.max">Minimum should be {{form2.controls.atenolol.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- bisoprolol -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Bisoprolol</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="bisoprolol" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.bisoprolol.touched && form2.controls.bisoprolol.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.bisoprolol.touched && form2.controls.bisoprolol.errors?.min">Minimum should be {{form2.controls.bisoprolol.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.bisoprolol.touched && form2.controls.bisoprolol.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.bisoprolol.touched && form2.controls.bisoprolol.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.bisoprolol.touched && form2.controls.bisoprolol.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.bisoprolol.touched && form2.controls.bisoprolol.errors?.max">Minimum should be {{form2.controls.bisoprolol.errors.max.max}}</span>
-        </small>
+      <!-- bisoprolol -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Bisoprolol</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="bisoprolol" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.bisoprolol.touched && form2.controls.bisoprolol.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.bisoprolol.touched && form2.controls.bisoprolol.errors?.min">Minimum should be {{form2.controls.bisoprolol.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.bisoprolol.touched && form2.controls.bisoprolol.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.bisoprolol.touched && form2.controls.bisoprolol.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.bisoprolol.touched && form2.controls.bisoprolol.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.bisoprolol.touched && form2.controls.bisoprolol.errors?.max">Minimum should be {{form2.controls.bisoprolol.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- methlydopa -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Mythyldopa</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="methlydopa" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.methlydopa.touched && form2.controls.methlydopa.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.methlydopa.touched && form2.controls.methlydopa.errors?.min">Minimum should be {{form2.controls.methlydopa.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.methlydopa.touched && form2.controls.methlydopa.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.methlydopa.touched && form2.controls.methlydopa.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.methlydopa.touched && form2.controls.methlydopa.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.methlydopa.touched && form2.controls.methlydopa.errors?.max">Minimum should be {{form2.controls.methlydopa.errors.max.max}}</span>
-        </small>
+      <!-- methlydopa -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Mythyldopa</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="methlydopa" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.methlydopa.touched && form2.controls.methlydopa.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.methlydopa.touched && form2.controls.methlydopa.errors?.min">Minimum should be {{form2.controls.methlydopa.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.methlydopa.touched && form2.controls.methlydopa.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.methlydopa.touched && form2.controls.methlydopa.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.methlydopa.touched && form2.controls.methlydopa.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.methlydopa.touched && form2.controls.methlydopa.errors?.max">Minimum should be {{form2.controls.methlydopa.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- frusemide -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Frusemide</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="frusemide" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.frusemide.touched && form2.controls.frusemide.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.frusemide.touched && form2.controls.frusemide.errors?.min">Minimum should be {{form2.controls.frusemide.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.frusemide.touched && form2.controls.frusemide.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.frusemide.touched && form2.controls.frusemide.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.frusemide.touched && form2.controls.frusemide.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.frusemide.touched && form2.controls.frusemide.errors?.max">Minimum should be {{form2.controls.frusemide.errors.max.max}}</span>
-        </small>
+      <!-- frusemide -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Frusemide</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="frusemide" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.frusemide.touched && form2.controls.frusemide.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.frusemide.touched && form2.controls.frusemide.errors?.min">Minimum should be {{form2.controls.frusemide.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.frusemide.touched && form2.controls.frusemide.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.frusemide.touched && form2.controls.frusemide.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.frusemide.touched && form2.controls.frusemide.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.frusemide.touched && form2.controls.frusemide.errors?.max">Minimum should be {{form2.controls.frusemide.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- hydralazine -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Hydralazine</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="hydralazine" class="form-control">
-          <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form2.controls.hydralazine.touched && form2.controls.hydralazine.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.hydralazine.touched && form2.controls.hydralazine.errors?.min">Minimum should be {{form2.controls.hydralazine.errors.min.min}}</span>
-          <span [ngClass]="form2.controls.hydralazine.touched && form2.controls.hydralazine.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hydralazine.touched && form2.controls.hydralazine.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.hydralazine.touched && form2.controls.hydralazine.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.hydralazine.touched && form2.controls.hydralazine.errors?.max">Minimum should be {{form2.controls.hydralazine.errors.max.max}}</span>
-        </small>
+      <!-- hydralazine -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Hydralazine</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="hydralazine" class="form-control">
+            <option *ngFor="let b of bools" [ngValue]="b.value">{{b.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form2.controls.hydralazine.touched && form2.controls.hydralazine.errors?.min ? 'text-danger' : ''" *ngIf="form2.controls.hydralazine.touched && form2.controls.hydralazine.errors?.min">Minimum should be {{form2.controls.hydralazine.errors.min.min}}</span>
+            <span [ngClass]="form2.controls.hydralazine.touched && form2.controls.hydralazine.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hydralazine.touched && form2.controls.hydralazine.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.hydralazine.touched && form2.controls.hydralazine.errors?.max ? 'text-danger' : ''" *ngIf="form2.controls.hydralazine.touched && form2.controls.hydralazine.errors?.max">Minimum should be {{form2.controls.hydralazine.errors.max.max}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
 
-    <!-- otherMeds -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Other ?Medications</label>
-      <div class="col-sm-3">
-        <textarea type="number" formControlName="otherMeds" class="form-control">
+      <!-- otherMeds -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Other ?Medications</label>
+        <div class="col-sm-3">
+          <textarea type="number" formControlName="otherMeds" class="form-control">
         </textarea>
-        <small>
-          <span [ngClass]="form22.controls.otherMeds.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.otherMeds.touched && form2.controls.otherMeds.errors?.maxlength">The maximum length is {{form2.controls.otherMeds.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.otherMeds.errors.maxlength.actualLength}}</span>
-          <span [ngClass]="form2.controls.otherMeds.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.otherMeds.touched && form2.controls.otherMeds.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.otherMeds.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.otherMeds.touched && form2.controls.otherMeds.errors?.minlength">The minimum length is {{form2.controls.otherMeds.errors.minlength.requiredLength}} characters: Current is {{form2.controls.otherMeds.errors.minlength.actualLength}}</span>
-        </small>
+          <small>
+            <span [ngClass]="form22.controls.otherMeds.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.otherMeds.touched && form2.controls.otherMeds.errors?.maxlength">The maximum length is {{form2.controls.otherMeds.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.otherMeds.errors.maxlength.actualLength}}</span>
+            <span [ngClass]="form2.controls.otherMeds.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.otherMeds.touched && form2.controls.otherMeds.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.otherMeds.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.otherMeds.touched && form2.controls.otherMeds.errors?.minlength">The minimum length is {{form2.controls.otherMeds.errors.minlength.requiredLength}} characters: Current is {{form2.controls.otherMeds.errors.minlength.actualLength}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-  </fieldset>
+    </fieldset>
 
-  <fieldset>
-    <legend>Sources of medications after visit?</legend>
-    <!-- hospitalNHIS -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">All given at the hospital with NHIS</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="hospitalNHIS" class="form-control">
-          <option *ngFor="let s of bools" [ngValue]="s.value">{{s.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form22.controls.hospitalNHIS.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.hospitalNHIS.touched && form2.controls.hospitalNHIS.errors?.maxlength">The maximum length is {{form2.controls.hospitalNHIS.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.hospitalNHIS.errors.maxlength.actualLength}}</span>
-          <span [ngClass]="form2.controls.hospitalNHIS.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hospitalNHIS.touched && form2.controls.hospitalNHIS.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.hospitalNHIS.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.hospitalNHIS.touched && form2.controls.hospitalNHIS.errors?.minlength">The minimum length is {{form2.controls.hospitalNHIS.errors.minlength.requiredLength}} characters: Current is {{form2.controls.hospitalNHIS.errors.minlength.actualLength}}</span>
-        </small>
+    <fieldset>
+      <legend>Sources of medications after visit?</legend>
+      <!-- hospitalNHIS -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">All given at the hospital with NHIS</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="hospitalNHIS" class="form-control">
+            <option *ngFor="let s of bools" [ngValue]="s.value">{{s.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form22.controls.hospitalNHIS.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.hospitalNHIS.touched && form2.controls.hospitalNHIS.errors?.maxlength">The maximum length is {{form2.controls.hospitalNHIS.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.hospitalNHIS.errors.maxlength.actualLength}}</span>
+            <span [ngClass]="form2.controls.hospitalNHIS.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hospitalNHIS.touched && form2.controls.hospitalNHIS.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.hospitalNHIS.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.hospitalNHIS.touched && form2.controls.hospitalNHIS.errors?.minlength">The minimum length is {{form2.controls.hospitalNHIS.errors.minlength.requiredLength}} characters: Current is {{form2.controls.hospitalNHIS.errors.minlength.actualLength}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- hospClosePharmLater -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Some at the hospital and the rest at a close-by pharmacy with NHIS</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="hospClosePharmLater" class="form-control">
-          <option *ngFor="let s of bools" [ngValue]="s.value">{{s.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form22.controls.hospClosePharmLater.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.hospClosePharmLater.touched && form2.controls.hospClosePharmLater.errors?.maxlength">The maximum length is {{form2.controls.hospClosePharmLater.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.hospClosePharmLater.errors.maxlength.actualLength}}</span>
-          <span [ngClass]="form2.controls.hospClosePharmLater.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hospClosePharmLater.touched && form2.controls.hospClosePharmLater.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.hospClosePharmLater.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.hospClosePharmLater.touched && form2.controls.hospClosePharmLater.errors?.minlength">The minimum length is {{form2.controls.hospClosePharmLater.errors.minlength.requiredLength}} characters: Current is {{form2.controls.hospClosePharmLater.errors.minlength.actualLength}}</span>
-        </small>
+      <!-- hospClosePharmLater -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Some at the hospital and the rest at a close-by pharmacy with NHIS</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="hospClosePharmLater" class="form-control">
+            <option *ngFor="let s of bools" [ngValue]="s.value">{{s.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form22.controls.hospClosePharmLater.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.hospClosePharmLater.touched && form2.controls.hospClosePharmLater.errors?.maxlength">The maximum length is {{form2.controls.hospClosePharmLater.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.hospClosePharmLater.errors.maxlength.actualLength}}</span>
+            <span [ngClass]="form2.controls.hospClosePharmLater.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hospClosePharmLater.touched && form2.controls.hospClosePharmLater.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.hospClosePharmLater.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.hospClosePharmLater.touched && form2.controls.hospClosePharmLater.errors?.minlength">The minimum length is {{form2.controls.hospClosePharmLater.errors.minlength.requiredLength}} characters: Current is {{form2.controls.hospClosePharmLater.errors.minlength.actualLength}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- hospClosePharmLater -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">Some at the hospital, others at a close by pharmacy and the rest purchased later</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="hospClosePharmLater" class="form-control">
-          <option *ngFor="let s of bools" [ngValue]="s.value">{{s.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form22.controls.hospClosePharmLater.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.hospClosePharmLater.touched && form2.controls.hospClosePharmLater.errors?.maxlength">The maximum length is {{form2.controls.hospClosePharmLater.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.hospClosePharmLater.errors.maxlength.actualLength}}</span>
-          <span [ngClass]="form2.controls.hospClosePharmLater.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hospClosePharmLater.touched && form2.controls.hospClosePharmLater.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.hospClosePharmLater.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.hospClosePharmLater.touched && form2.controls.hospClosePharmLater.errors?.minlength">The minimum length is {{form2.controls.hospClosePharmLater.errors.minlength.requiredLength}} characters: Current is {{form2.controls.hospClosePharmLater.errors.minlength.actualLength}}</span>
-        </small>
+      <!-- hospClosePharmLater -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Some at the hospital, others at a close by pharmacy and the rest purchased later</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="hospClosePharmLater" class="form-control">
+            <option *ngFor="let s of bools" [ngValue]="s.value">{{s.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form22.controls.hospClosePharmLater.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.hospClosePharmLater.touched && form2.controls.hospClosePharmLater.errors?.maxlength">The maximum length is {{form2.controls.hospClosePharmLater.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.hospClosePharmLater.errors.maxlength.actualLength}}</span>
+            <span [ngClass]="form2.controls.hospClosePharmLater.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hospClosePharmLater.touched && form2.controls.hospClosePharmLater.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.hospClosePharmLater.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.hospClosePharmLater.touched && form2.controls.hospClosePharmLater.errors?.minlength">The minimum length is {{form2.controls.hospClosePharmLater.errors.minlength.requiredLength}} characters: Current is {{form2.controls.hospClosePharmLater.errors.minlength.actualLength}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- closePharmNHIS -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">All at a close-by pharmacy with NHIS</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="closePharmNHIS" class="form-control">
-          <option *ngFor="let s of bools" [ngValue]="s.value">{{s.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form22.controls.closePharmNHIS.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.closePharmNHIS.touched && form2.controls.closePharmNHIS.errors?.maxlength">The maximum length is {{form2.controls.closePharmNHIS.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.closePharmNHIS.errors.maxlength.actualLength}}</span>
-          <span [ngClass]="form2.controls.closePharmNHIS.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.closePharmNHIS.touched && form2.controls.closePharmNHIS.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.closePharmNHIS.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.closePharmNHIS.touched && form2.controls.closePharmNHIS.errors?.minlength">The minimum length is {{form2.controls.closePharmNHIS.errors.minlength.requiredLength}} characters: Current is {{form2.controls.closePharmNHIS.errors.minlength.actualLength}}</span>
-        </small>
+      <!-- closePharmNHIS -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">All at a close-by pharmacy with NHIS</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="closePharmNHIS" class="form-control">
+            <option *ngFor="let s of bools" [ngValue]="s.value">{{s.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form22.controls.closePharmNHIS.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.closePharmNHIS.touched && form2.controls.closePharmNHIS.errors?.maxlength">The maximum length is {{form2.controls.closePharmNHIS.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.closePharmNHIS.errors.maxlength.actualLength}}</span>
+            <span [ngClass]="form2.controls.closePharmNHIS.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.closePharmNHIS.touched && form2.controls.closePharmNHIS.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.closePharmNHIS.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.closePharmNHIS.touched && form2.controls.closePharmNHIS.errors?.minlength">The minimum length is {{form2.controls.closePharmNHIS.errors.minlength.requiredLength}} characters: Current is {{form2.controls.closePharmNHIS.errors.minlength.actualLength}}</span>
+          </small>
+        </div>
       </div>
-    </div>
 
-    <!-- hospitalFee -->
-    <div class="form-group form-row">
-      <label class="col-form-label col-sm-4">All purchased at the hospital</label>
-      <div class="col-sm-3">
-        <select type="number" formControlName="hospitalFee" class="form-control">
-          <option *ngFor="let s of bools" [ngValue]="s.value">{{s.label}}</option>
-        </select>
-        <small>
-          <span [ngClass]="form22.controls.hospitalFee.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.hospitalFee.touched && form2.controls.hospitalFee.errors?.maxlength">The maximum length is {{form2.controls.hospitalFee.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.hospitalFee.errors.maxlength.actualLength}}</span>
-          <span [ngClass]="form2.controls.hospitalFee.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hospitalFee.touched && form2.controls.hospitalFee.errors?.required">Required</span>
-          <span [ngClass]="form2.controls.hospitalFee.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.hospitalFee.touched && form2.controls.hospitalFee.errors?.minlength">The minimum length is {{form2.controls.hospitalFee.errors.minlength.requiredLength}} characters: Current is {{form2.controls.hospitalFee.errors.minlength.actualLength}}</span>
-        </small>
+      <!-- hospitalFee -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">All purchased at the hospital</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="hospitalFee" class="form-control">
+            <option *ngFor="let s of bools" [ngValue]="s.value">{{s.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form22.controls.hospitalFee.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.hospitalFee.touched && form2.controls.hospitalFee.errors?.maxlength">The maximum length is {{form2.controls.hospitalFee.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.hospitalFee.errors.maxlength.actualLength}}</span>
+            <span [ngClass]="form2.controls.hospitalFee.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hospitalFee.touched && form2.controls.hospitalFee.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.hospitalFee.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.hospitalFee.touched && form2.controls.hospitalFee.errors?.minlength">The minimum length is {{form2.controls.hospitalFee.errors.minlength.requiredLength}} characters: Current is {{form2.controls.hospitalFee.errors.minlength.actualLength}}</span>
+          </small>
+        </div>
       </div>
-    </div>
+    </fieldset>
+    <fieldset>
+      <legend>Routine Care</legend>
+      <!-- labWork -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Have you done any lab work during a follow up visit?</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="labWork" class="form-control">
+            <option *ngFor="let s of trips" [ngValue]="s.value">{{s.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form22.controls.labWork.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.labWork.touched && form2.controls.labWork.errors?.maxlength">The maximum length is {{form2.controls.labWork.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.labWork.errors.maxlength.actualLength}}</span>
+            <span [ngClass]="form2.controls.labWork.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.labWork.touched && form2.controls.labWork.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.labWork.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.labWork.touched && form2.controls.labWork.errors?.minlength">The minimum length is {{form2.controls.labWork.errors.minlength.requiredLength}} characters: Current is {{form2.controls.labWork.errors.minlength.actualLength}}</span>
+          </small>
+        </div>
+      </div>
 
-  </fieldset>
-  <div class="col-md-offset-2 btn-group">
-    <button [disabled]="form2.invalid || act.isProcessing" type="submit" [ngClass]="form2.invalid ? 'btn-outline-danger' : 'btn-outline-success'" class="btn">Save</button>
-    <button [disabled]="act.isProcessing" type="button" (click)="prev(1)" [ngClass]="form2.invalid ? 'btn-outline-danger' : 'btn-outline-secondary'" class="btn">Previous</button>
-  </div>
-  <div [ngClass]="act.isError ? 'alert-danger' : 'alert-info'">{{act.message}}</div>
-</form>
-<!--</div>-->
+      <!-- hasNHIS -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Do you have an insurance</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="hasNHIS" class="form-control">
+            <option *ngFor="let s of bools" [ngValue]="s.value">{{s.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form22.controls.hasNHIS.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.hasNHIS.touched && form2.controls.hasNHIS.errors?.maxlength">The maximum length is {{form2.controls.hasNHIS.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.hasNHIS.errors.maxlength.actualLength}}</span>
+            <span [ngClass]="form2.controls.hasNHIS.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hasNHIS.touched && form2.controls.hasNHIS.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.hasNHIS.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.hasNHIS.touched && form2.controls.hasNHIS.errors?.minlength">The minimum length is {{form2.controls.hasNHIS.errors.minlength.requiredLength}} characters: Current is {{form2.controls.hasNHIS.errors.minlength.actualLength}}</span>
+          </small>
+        </div>
+      </div>
+
+      <!-- careFacilities -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">How many facilities do you attend health care needs</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="careFacilities" class="form-control">
+            <option *ngFor="let s of ['1', '2', '2 More than']" [ngValue]="s">{{s}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form22.controls.careFacilities.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.careFacilities.touched && form2.controls.careFacilities.errors?.maxlength">The maximum length is {{form2.controls.careFacilities.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.careFacilities.errors.maxlength.actualLength}}</span>
+            <span [ngClass]="form2.controls.careFacilities.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.careFacilities.touched && form2.controls.careFacilities.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.careFacilities.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.careFacilities.touched && form2.controls.careFacilities.errors?.minlength">The minimum length is {{form2.controls.careFacilities.errors.minlength.requiredLength}} characters: Current is {{form2.controls.careFacilities.errors.minlength.actualLength}}</span>
+          </small>
+        </div>
+      </div>
+
+      <!-- doGetMedsFromAll -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Do you receive BP medications from all the facilities?</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="doGetMedsFromAll" class="form-control">
+            <option *ngFor="let s of trips" [ngValue]="s.value">{{s.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form22.controls.doGetMedsFromAll.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.doGetMedsFromAll.touched && form2.controls.doGetMedsFromAll.errors?.maxlength">The maximum length is {{form2.controls.doGetMedsFromAll.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.doGetMedsFromAll.errors.maxlength.actualLength}}</span>
+            <span [ngClass]="form2.controls.doGetMedsFromAll.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.doGetMedsFromAll.touched && form2.controls.doGetMedsFromAll.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.doGetMedsFromAll.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.doGetMedsFromAll.touched && form2.controls.doGetMedsFromAll.errors?.minlength">The minimum length is {{form2.controls.doGetMedsFromAll.errors.minlength.requiredLength}} characters: Current is {{form2.controls.doGetMedsFromAll.errors.minlength.actualLength}}</span>
+          </small>
+        </div>
+      </div>
+
+      <!-- hasSpecialClinic -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4">Do you attend a special clinic for blood pressure care</label>
+        <div class="col-sm-3">
+          <select type="number" formControlName="hasSpecialClinic" class="form-control">
+            <option *ngFor="let s of bools" [ngValue]="s.value">{{s.label}}</option>
+          </select>
+          <small>
+            <span [ngClass]="form22.controls.hasSpecialClinic.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.hasSpecialClinic.touched && form2.controls.hasSpecialClinic.errors?.maxlength">The maximum length is {{form2.controls.hasSpecialClinic.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.hasSpecialClinic.errors.maxlength.actualLength}}</span>
+            <span [ngClass]="form2.controls.hasSpecialClinic.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.hasSpecialClinic.touched && form2.controls.hasSpecialClinic.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.hasSpecialClinic.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.hasSpecialClinic.touched && form2.controls.hasSpecialClinic.errors?.minlength">The minimum length is {{form2.controls.hasSpecialClinic.errors.minlength.requiredLength}} characters: Current is {{form2.controls.hasSpecialClinic.errors.minlength.actualLength}}</span>
+          </small>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>With the following questions, consider your care in the past two years</legend>
+      <!-- sameDoctor -->
+      <div class="form-group form-row">
+        <label class="col-form-label col-sm-4"></label>
+        <div class="col-sm-1" *ngFor="let l of ['All the time', 'Most of the time', 'Some of the time', 'Never']">{{l}}</div>
+      </div>
+      <div class="form-group form-row" *ngFor="let c of cares">
+        <label class="col-form-label col-sm-4">{{c.label}}</label>
+        <div class="col-sm-1" *ngFor="let n of [0, 1, 2, 3, 4]">
+          <input type="radio" formControlName="{{c.control}}" class="form-control" [value]="n" />
+          <small>
+            <span [ngClass]="form22.controls.sameDoctor.errors?.maxlength ? 'text-danger' : ''" *ngIf="form2.controls.sameDoctor.touched && form2.controls.sameDoctor.errors?.maxlength">The maximum length is {{form2.controls.sameDoctor.errors.maxlength.requiredLength}} characters: Current is {{form2.controls.sameDoctor.errors.maxlength.actualLength}}</span>
+            <span [ngClass]="form2.controls.sameDoctor.errors?.required ? 'text-danger' : ''" *ngIf="form2.controls.sameDoctor.touched && form2.controls.sameDoctor.errors?.required">Required</span>
+            <span [ngClass]="form2.controls.sameDoctor.errors?.minlength ? 'text-danger' : ''" *ngIf="form2.controls.sameDoctor.touched && form2.controls.sameDoctor.errors?.minlength">The minimum length is {{form2.controls.sameDoctor.errors.minlength.requiredLength}} characters: Current is {{form2.controls.sameDoctor.errors.minlength.actualLength}}</span>
+          </small>
+        </div>
+      </div>
+
+    </fieldset>
+    <div class="col-md-offset-2 btn-group">
+      <button [disabled]="form2.invalid || act.isProcessing" type="submit" [ngClass]="form2.invalid ? 'btn-outline-danger' : 'btn-outline-success'" class="btn">Save</button>
+      <button [ngClass]="form2.invalid ? 'btn-outline-danger' : 'btn-outline-success'" (click)="check(form2)" class="btn">Save 2</button>
+      <button [disabled]="act.isProcessing" type="button" (click)="prev(1)" [ngClass]="form2.invalid ? 'btn-outline-danger' : 'btn-outline-secondary'" class="btn">Previous</button>
+    </div>
+    <div [ngClass]="act.isError ? 'alert-danger' : 'alert-info'">{{act.message}}</div>
+  </form>
+</div>
+
+<div [hidden]="!sections[2].state">
+  <form name="form3" [formGroup]="form3" id="form3" (submit)="addSec2(form3.value)">
+    <label>Section {{sections[2].section}} : {{sections[2].label}}</label>
+    <fieldset>
+      <legend></legend>
+    </fieldset>
+  </form>
+</div>

@@ -134,3 +134,26 @@ export const drugSrcs: IKeyValuePairs[] = [
   { value: 4, label: "All at a close - by pharmacy with NHIS" },
   { value: 5, label: "All purchased at the hospital" }
 ]
+
+export interface ILickert extends IKeyValuePairs {
+  control: string
+}
+
+
+export const twoYearsCare: Array<{ control: string, label: string }> = [
+  { control: 'sameDoctor', label: "How often do you see the same doctor" },
+  {
+    control: 'drTellState', label: "How often does your doctor tell you about the state of your BP"
+  },
+  {
+    control: "staffAdvise", label: "How often do you get advice from health care staff regarding means to bring down your BP"
+  },
+  {
+    control: "runOutMeds", label: "How often do you run out of your BP medications before a follow up visit"
+  },
+  { control: "missAppointment", label: "How often do you miss an appointment" },
+  {
+    control: "hospTime", label: "How often do you take your drugs before coming to the clinic for a follow up"
+  },
+  { control: "takeDrugsBeforeVisit", label: "Do you get to the hospital on time for typical hypertension follow up" }
+]
