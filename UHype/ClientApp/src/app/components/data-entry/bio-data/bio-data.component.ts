@@ -15,6 +15,7 @@ export class BioDataComponent implements OnInit {
   form: FormGroup;
   form2: FormGroup;
   form3: FormGroup;
+  form4: FormGroup;
   marts = maritalStatuses;
   rels = religions;
   eths = ethnics;
@@ -92,8 +93,41 @@ export class BioDataComponent implements OnInit {
       hospTime: [2, Validators.compose([Validators.required, Validators.min(0), Validators.max(4)])]
     })
     this.form3 = fb.group({
-
+      financeDiffs: ["", Validators.compose([Validators.required])],
+      hasConcerns: ["", Validators.compose([Validators.required])],
+      concerns: ["", Validators.compose([Validators.required])],
+      hasAssitance: ["", Validators.compose([Validators.required])],
+      takesHerbal: ["", Validators.compose([Validators.required])],
+      stillHerbal: ["", Validators.compose([Validators.required])],
+      herbReason: ['', Validators.compose([Validators.minLength(4), Validators.maxLength(100)])],
+      seenDietician: ["", Validators.compose([Validators.required, Validators.min(0), Validators.max(4)])],
+      believeDiet: ["", Validators.compose([Validators.required, Validators.min(0), Validators.max(4)])],
+      specialDiet: ["", Validators.compose([Validators.required, Validators.min(0), Validators.max(4)])],
+      physicalActivity: ["", Validators.compose([Validators.required])],
+      walking: ["", Validators.compose([Validators.required])],
+      running: ["", Validators.compose([Validators.required])],
+      others: ["", Validators.compose([Validators.required])],
+      oftenPhysical: ["", Validators.compose([Validators.required, Validators.min(0), Validators.max(4)])],
+      timePhysical: ["", Validators.compose([Validators.required, Validators.min(0), Validators.max(6)])],
+      cigarette: ["", Validators.compose([Validators.required])],
+      howLongCig: ["", Validators.compose([Validators.required, Validators.min(0), Validators.max(4)])],
+      numberPerDay: ["", Validators.compose([Validators.required, Validators.min(0), Validators.max(4)])],
+      currentDrink: ["", Validators.compose([Validators.required])],
+      everDrunk: ["", Validators.compose([Validators.required])],
+      howLongAlc: ["", Validators.compose([Validators.required, Validators.min(0), Validators.max(4)])],
+      unitsPerWeek: ["", Validators.compose([Validators.required, Validators.min(0), Validators.max(4)])],
+      isRiskStroke: ["", Validators.compose([Validators.required])],
+      isRiskHeartAttack: ["", Validators.compose([Validators.required])],
+      isRiskDiabetes: ["", Validators.compose([Validators.required])],
+      isRiskBlind: ["", Validators.compose([Validators.required])],
+      isRiskKidney: ["", Validators.compose([Validators.required])],
+      dieEarly: ["", Validators.compose([Validators.required])],
+      feelSad: ["", Validators.compose([Validators.required])],
+      doctorWish: ["", Validators.compose([Validators.required])],
     });
+    this.form4 = fb.group({
+
+    })
   }
 
   ngOnInit() {

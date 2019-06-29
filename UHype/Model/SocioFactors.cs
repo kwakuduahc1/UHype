@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UHype.Model
@@ -24,6 +23,11 @@ namespace UHype.Model
         [Range(0, 2)]
         public byte TakesHerbal { get; set; }
 
+        public bool StillHerbal { get; set; }
+
+        [StringLength(100, MinimumLength = 4)]
+        public string HerbReason { get; set; }
+
         [Required]
         [Range(0, 2)]
         public byte SeenDietician { get; set; }
@@ -47,6 +51,9 @@ namespace UHype.Model
         [Range(0, 5)]
         [Required]
         public byte OftenPhysical { get; set; }
+
+        [Range(0, 5)]
+        public byte TimePhysical { get; set; }
 
         public bool Cigarette { get; set; }
 

@@ -157,6 +157,8 @@ export interface ISocioFactors {
   concerns: string;
   hasAssitance: boolean;
   takesHerbal: number;
+  stillHerbal: number;
+  herbReason: string;
   seenDietician: number;
   believeDiet: number;
   specialDiet: number;
@@ -165,6 +167,7 @@ export interface ISocioFactors {
   running: boolean;
   others: string;
   oftenPhysical: number;
+  timePhysical:number
   cigarette: boolean;
   howLongCig: number;
   numberPerDay: number;
