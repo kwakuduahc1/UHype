@@ -1245,5 +1245,268 @@
       </div>
     </div>
   </fieldset>
+  <div class="col-md-offset-2 btn-group">
+    <button [disabled]="form3.invalid || act.isProcessing" type="submit" [ngClass]="form3.invalid ? 'btn-outline-danger' : 'btn-outline-success'" class="btn">Save</button>
+    <button [disabled]="act.isProcessing" type="button" (click)="prev(1)" [ngClass]="form3.invalid ? 'btn-outline-danger' : 'btn-outline-secondary'" class="btn">Previous</button>
+  </div>
+  <div [ngClass]="act.isError ? 'alert-danger' : 'alert-info'">{{act.message}}</div>
+</form>
+<!--</div>-->
+<!--<div [hidden]="!sections[3].state">-->
+<form name="form4" [formGroup]="form4" id="form4" (submit)="add4(form4.value)">
+  <fieldset>
+    <legend>Section {{sections[3].section}} : {{sections[3].label}}</legend>
+    <legend>Limitations of physical activity</legend>
+    <!-- healthScale -->
+    <div class="form-group form-row">
+      <label class="col-form-label col-sm-4">In general, would you say your health is:</label>
+      <div class="col-sm-3">
+        <select type="number" formControlName="healthScale" class="form-control">
+          <option *ngFor="let b of scales" [ngValue]="b.value">{{b.label}}</option>
+        </select>
+        <small>
+          <span [ngClass]="form4.controls.healthScale.touched && form4.controls.healthScale.errors?.min ? 'text-danger' : ''" *ngIf="form4.controls.healthScale.touched && form4.controls.healthScale.errors?.min">Minimum should be {{form4.controls.healthScale.errors.min.min}}</span>
+          <span [ngClass]="form4.controls.healthScale.touched && form4.controls.healthScale.errors?.required ? 'text-danger' : ''" *ngIf="form4.controls.healthScale.touched && form4.controls.healthScale.errors?.required">Required</span>
+          <span [ngClass]="form4.controls.healthScale.touched && form4.controls.healthScale.errors?.max ? 'text-danger' : ''" *ngIf="form4.controls.healthScale.touched && form4.controls.healthScale.errors?.max">Minimum should be {{form4.controls.healthScale.errors.max.max}}</span>
+        </small>
+      </div>
+    </div>
+
+    <!-- compared -->
+    <div class="form-group form-row">
+      <label class="col-form-label col-sm-4">Compared to one year ago, your health is</label>
+      <div class="col-sm-3">
+        <select type="number" formControlName="compared" class="form-control">
+          <option *ngFor="let b of cps" [ngValue]="b.value">{{b.label}}</option>
+        </select>
+        <small>
+          <span [ngClass]="form4.controls.compared.touched && form4.controls.compared.errors?.min ? 'text-danger' : ''" *ngIf="form4.controls.compared.touched && form4.controls.compared.errors?.min">Minimum should be {{form4.controls.compared.errors.min.min}}</span>
+          <span [ngClass]="form4.controls.compared.touched && form4.controls.compared.errors?.required ? 'text-danger' : ''" *ngIf="form4.controls.compared.touched && form4.controls.compared.errors?.required">Required</span>
+          <span [ngClass]="form4.controls.compared.touched && form4.controls.compared.errors?.max ? 'text-danger' : ''" *ngIf="form4.controls.compared.touched && form4.controls.compared.errors?.max">Minimum should be {{form4.controls.compared.errors.max.max}}</span>
+        </small>
+      </div>
+    </div>
+
+    <legend>
+      The following items are about activities you might do during a typical day. Does your health now limit you in these
+      activities? If so, how much?
+    </legend>
+
+    <div class="form-group form-row">
+      <label class="col-form-label col-sm-4"></label>
+      <div class="col-sm-1" *ngFor="let l of ['Yes, Limited a lot ', 'Yes, Limited a Little', 'No, Not Limited at all']">{{l}}</div>
+    </div>
+    <div class="form-group form-row" *ngFor="let c of actLimits">
+      <label class="col-form-label col-sm-4">{{c.label}}</label>
+      <div class="col-sm-1" *ngFor="let n of [1, 2, 3]">
+        <input type="radio" formControlName="{{c.control}}" class="form-control" [value]="n" />
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>During the past 4 weeks, have you had any of the following problems with your work or other regular daily activities as a result of your physical health?</legend>
+    <div class="form-group form-row">
+      <label class="col-form-label col-sm-4"></label>
+      <div class="col-sm-1" *ngFor="let l of ['Yes, Limited a lot ', 'Yes, Limited a Little', 'No, Not Limited at all']">{{l}}</div>
+    </div>
+    <div class="form-group form-row" *ngFor="let c of phyLimits">
+      <label class="col-form-label col-sm-4">{{c.label}}</label>
+      <div class="col-sm-1" *ngFor="let n of [1, 2, 3]">
+        <input type="radio" formControlName="{{c.control}}" class="form-control" [value]="n" />
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>During the past 4 weeks, have you had any of the following problems with your work or other regular daily activities as a result of any emotional problems (such as feeling depressed or anxious)?</legend>
+    <div class="form-group form-row">
+      <label class="col-form-label col-sm-4"></label>
+      <div class="col-sm-1" *ngFor="let l of ['Yes, Limited a lot ', 'Yes, Limited a Little', 'No, Not Limited at all']">{{l}}</div>
+    </div>
+    <div class="form-group form-row" *ngFor="let c of emLimits">
+      <label class="col-form-label col-sm-4">{{c.label}}</label>
+      <div class="col-sm-1" *ngFor="let n of [1, 2, 3]">
+        <input type="radio" formControlName="{{c.control}}" class="form-control" [value]="n" />
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Social Activities</legend>
+    <!-- emotionalInterfere -->
+    <div class="form-group form-row">
+      <label class="col-form-label col-sm-4">
+        Did Emotional problems interfere with your normal social activities with family, friends, neighbors, or groups?
+      </label>
+      <div class="col-sm-3">
+        <select type="number" formControlName="emotionalInterfere" class="form-control">
+          <option *ngFor="let s of levels" [ngValue]="s.value">{{s.label}}</option>
+        </select>
+        <small>
+          <span [ngClass]="form4.controls.emotionalInterfere.errors?.maxlength ? 'text-danger' : ''" *ngIf="form4.controls.emotionalInterfere.touched && form4.controls.emotionalInterfere.errors?.maxlength">The maximum length is {{form4.controls.emotionalInterfere.errors.maxlength.requiredLength}} characters: Current is {{form4.controls.emotionalInterfere.errors.maxlength.actualLength}}</span>
+          <span [ngClass]="form4.controls.emotionalInterfere.errors?.required ? 'text-danger' : ''" *ngIf="form4.controls.emotionalInterfere.touched && form4.controls.emotionalInterfere.errors?.required">Required</span>
+          <span [ngClass]="form4.controls.emotionalInterfere.errors?.minlength ? 'text-danger' : ''" *ngIf="form4.controls.emotionalInterfere.touched && form4.controls.emotionalInterfere.errors?.minlength">The minimum length is {{form4.controls.emotionalInterfere.errors.minlength.requiredLength}} characters: Current is {{form4.controls.emotionalInterfere.errors.minlength.actualLength}}</span>
+        </small>
+      </div>
+    </div>
+
+    <!-- bodyPainsIn4 -->
+    <div class="form-group form-row">
+      <label class="col-form-label col-sm-4">
+        How much bodily pain have you had during the past 4 weeks?
+      </label>
+      <div class="col-sm-3">
+        <select type="number" formControlName="bodyPainsIn4" class="form-control">
+          <option *ngFor="let s of levels" [ngValue]="s.value">{{s.label}}</option>
+        </select>
+        <small>
+          <span [ngClass]="form4.controls.bodyPainsIn4.errors?.maxlength ? 'text-danger' : ''" *ngIf="form4.controls.bodyPainsIn4.touched && form4.controls.bodyPainsIn4.errors?.maxlength">The maximum length is {{form4.controls.bodyPainsIn4.errors.maxlength.requiredLength}} characters: Current is {{form4.controls.bodyPainsIn4.errors.maxlength.actualLength}}</span>
+          <span [ngClass]="form4.controls.bodyPainsIn4.errors?.required ? 'text-danger' : ''" *ngIf="form4.controls.bodyPainsIn4.touched && form4.controls.bodyPainsIn4.errors?.required">Required</span>
+          <span [ngClass]="form4.controls.bodyPainsIn4.errors?.minlength ? 'text-danger' : ''" *ngIf="form4.controls.bodyPainsIn4.touched && form4.controls.bodyPainsIn4.errors?.minlength">The minimum length is {{form4.controls.bodyPainsIn4.errors.minlength.requiredLength}} characters: Current is {{form4.controls.bodyPainsIn4.errors.minlength.actualLength}}</span>
+        </small>
+      </div>
+    </div>
+    <!-- bodyPainInHouse -->
+
+  </fieldset>
+
+  <fieldset>
+    <legend>
+      ENERGY AND EMOTIONS: <br />
+      These questions are about how you feel and how things have been with you during the last 4 weeks. For each
+      question, please give the answer that comes closest to the way you have been feeling
+    </legend>
+    <div class="form-group form-row">
+      <label class="col-form-label col-sm-4"></label>
+      <div class="col-sm-1" *ngFor="let l of energies">{{l.label}}</div>
+    </div>
+    <div class="form-group form-row" *ngFor="let c of eae">
+      <label class="col-form-label col-sm-4">{{c.label}}</label>
+      <div class="col-sm-1" *ngFor="let n of [6, 5, 4, 3, 2, 1]">
+        <input type="radio" formControlName="{{c.control}}" class="form-control" [value]="n" />
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>
+      GENERAL HEALTH:
+      How true or false is each of the following statements for you?
+    </legend>
+    <div class="form-group form-row">
+      <label class="col-form-label col-sm-4"></label>
+      <div class="col-sm-1" *ngFor="let l of healthies">{{l.label}}</div>
+    </div>
+    <div class="form-group form-row" *ngFor="let c of heaqts">
+      <label class="col-form-label col-sm-4">{{c.label}}</label>
+      <div class="col-sm-1" *ngFor="let n of [5, 4, 3, 2, 1]">
+        <input type="radio" formControlName="{{c.control}}" class="form-control" [value]="n" />
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="col-md-offset-2 btn-group">
+    <button [disabled]="form4.invalid || act.isProcessing" type="submit" [ngClass]="form4.invalid ? 'btn-outline-danger' : 'btn-outline-success'" class="btn">Save</button>
+    <button [disabled]="act.isProcessing" type="button" (click)="prev(1)" [ngClass]="form4.invalid ? 'btn-outline-danger' : 'btn-outline-secondary'" class="btn">Previous</button>
+  </div>
+  <div [ngClass]="act.isError ? 'alert-danger' : 'alert-info'">{{act.message}}</div>
+</form>
+<!--</div>-->
+<!--<div [hidden]="!sections[3].state">-->
+<form name="form4" [formGroup]="antform" id="antform" (submit)="addAnt(antform.value)">
+  <fieldset>
+    <legend>Section {{sections[4].section}} : {{sections[4].label}}</legend>
+    <!-- height -->
+    <div class="form-group form-row">
+      <label class="col-form-label col-sm-2">Height</label>
+      <div class="col-sm-3">
+        <input type="number" formControlName="height" class="form-control" />
+        <small>
+          <span [ngClass]="antform.controls.height.touched && antform.controls.height.errors?.min ? 'text-danger' : ''" *ngIf="antform.controls.height.touched && antform.controls.height.errors?.min">Minimum should be {{antform.controls.height.errors.min.min}}</span>
+          <span [ngClass]="antform.controls.height.touched && antform.controls.height.errors?.required ? 'text-danger' : ''" *ngIf="antform.controls.height.touched && antform.controls.height.errors?.required">Required</span>
+          <span [ngClass]="antform.controls.height.touched && antform.controls.height.errors?.max ? 'text-danger' : ''" *ngIf="antform.controls.height.touched && antform.controls.height.errors?.max">Minimum should be {{antform.controls.height.errors.max.max}}</span>
+        </small>
+      </div>
+    </div>
+
+    <!-- weight -->
+    <div class="form-group form-row">
+      <label class="col-form-label col-sm-2">Weight</label>
+      <div class="col-sm-3">
+        <input type="number" formControlName="weight" class="form-control" />
+        <small>
+          <span [ngClass]="antform.controls.weight.touched && antform.controls.weight.errors?.min ? 'text-danger' : ''" *ngIf="antform.controls.weight.touched && antform.controls.weight.errors?.min">Minimum should be {{antform.controls.weight.errors.min.min}}</span>
+          <span [ngClass]="antform.controls.weight.touched && antform.controls.weight.errors?.required ? 'text-danger' : ''" *ngIf="antform.controls.weight.touched && antform.controls.weight.errors?.required">Required</span>
+          <span [ngClass]="antform.controls.weight.touched && antform.controls.weight.errors?.max ? 'text-danger' : ''" *ngIf="antform.controls.weight.touched && antform.controls.weight.errors?.max">Minimum should be {{antform.controls.weight.errors.max.max}}</span>
+        </small>
+      </div>
+    </div>
+
+    <!-- mUAC -->
+    <div class="form-group form-row">
+      <label class="col-form-label col-sm-2">MUAC</label>
+      <div class="col-sm-3">
+        <input type="number" formControlName="mUAC" class="form-control" />
+        <small>
+          <span [ngClass]="antform.controls.mUAC.touched && antform.controls.mUAC.errors?.min ? 'text-danger' : ''" *ngIf="antform.controls.mUAC.touched && antform.controls.mUAC.errors?.min">Minimum should be {{antform.controls.mUAC.errors.min.min}}</span>
+          <span [ngClass]="antform.controls.mUAC.touched && antform.controls.mUAC.errors?.required ? 'text-danger' : ''" *ngIf="antform.controls.mUAC.touched && antform.controls.mUAC.errors?.required">Required</span>
+          <span [ngClass]="antform.controls.mUAC.touched && antform.controls.mUAC.errors?.max ? 'text-danger' : ''" *ngIf="antform.controls.mUAC.touched && antform.controls.mUAC.errors?.max">Minimum should be {{antform.controls.mUAC.errors.max.max}}</span>
+        </small>
+      </div>
+    </div>
+
+
+    <!-- abdCirc -->
+    <div class="form-group form-row">
+      <label class="col-form-label col-sm-2">Abdominal Circumference</label>
+      <div class="col-sm-3">
+        <input type="number" formControlName="abdCirc" class="form-control" />
+        <small>
+          <span [ngClass]="antform.controls.abdCirc.touched && antform.controls.abdCirc.errors?.min ? 'text-danger' : ''" *ngIf="antform.controls.abdCirc.touched && antform.controls.abdCirc.errors?.min">Minimum should be {{antform.controls.abdCirc.errors.min.min}}</span>
+          <span [ngClass]="antform.controls.abdCirc.touched && antform.controls.abdCirc.errors?.required ? 'text-danger' : ''" *ngIf="antform.controls.abdCirc.touched && antform.controls.abdCirc.errors?.required">Required</span>
+          <span [ngClass]="antform.controls.abdCirc.touched && antform.controls.abdCirc.errors?.max ? 'text-danger' : ''" *ngIf="antform.controls.abdCirc.touched && antform.controls.abdCirc.errors?.max">Minimum should be {{antform.controls.abdCirc.errors.max.max}}</span>
+        </small>
+      </div>
+    </div>
+
+
+    <!-- systole -->
+    <div class="form-group form-row">
+      <label class="col-form-label col-sm-2">Systole</label>
+      <div class="col-sm-3">
+        <input type="number" formControlName="systole" class="form-control" />
+        <small>
+          <span [ngClass]="antform.controls.systole.touched && antform.controls.systole.errors?.min ? 'text-danger' : ''" *ngIf="antform.controls.systole.touched && antform.controls.systole.errors?.min">Minimum should be {{antform.controls.systole.errors.min.min}}</span>
+          <span [ngClass]="antform.controls.systole.touched && antform.controls.systole.errors?.required ? 'text-danger' : ''" *ngIf="antform.controls.systole.touched && antform.controls.systole.errors?.required">Required</span>
+          <span [ngClass]="antform.controls.systole.touched && antform.controls.systole.errors?.max ? 'text-danger' : ''" *ngIf="antform.controls.systole.touched && antform.controls.systole.errors?.max">Minimum should be {{antform.controls.systole.errors.max.max}}</span>
+        </small>
+      </div>
+    </div>
+
+    <!-- diastole -->
+    <div class="form-group form-row">
+      <label class="col-form-label col-sm-2">Diastole</label>
+      <div class="col-sm-3">
+        <input type="number" formControlName="diastole" class="form-control" />
+        <small>
+          <span [ngClass]="antform.controls.diastole.touched && antform.controls.diastole.errors?.min ? 'text-danger' : ''" *ngIf="antform.controls.diastole.touched && antform.controls.diastole.errors?.min">Minimum should be {{antform.controls.diastole.errors.min.min}}</span>
+          <span [ngClass]="antform.controls.diastole.touched && antform.controls.diastole.errors?.required ? 'text-danger' : ''" *ngIf="antform.controls.diastole.touched && antform.controls.diastole.errors?.required">Required</span>
+          <span [ngClass]="antform.controls.diastole.touched && antform.controls.diastole.errors?.max ? 'text-danger' : ''" *ngIf="antform.controls.diastole.touched && antform.controls.diastole.errors?.max">Minimum should be {{antform.controls.diastole.errors.max.max}}</span>
+        </small>
+      </div>
+    </div>
+
+    <!-- fat -->
+    <div class="form-group form-row">
+      <label class="col-form-label col-sm-2">Diastole</label>
+      <div class="col-sm-3">
+        <input type="number" formControlName="fat" class="form-control" />
+        <small>
+          <span [ngClass]="antform.controls.fat.touched && antform.controls.fat.errors?.min ? 'text-danger' : ''" *ngIf="antform.controls.fat.touched && antform.controls.fat.errors?.min">Minimum should be {{antform.controls.fat.errors.min.min}}</span>
+          <span [ngClass]="antform.controls.fat.touched && antform.controls.fat.errors?.required ? 'text-danger' : ''" *ngIf="antform.controls.fat.touched && antform.controls.fat.errors?.required">Required</span>
+          <span [ngClass]="antform.controls.fat.touched && antform.controls.fat.errors?.max ? 'text-danger' : ''" *ngIf="antform.controls.fat.touched && antform.controls.fat.errors?.max">Minimum should be {{antform.controls.fat.errors.max.max}}</span>
+        </small>
+      </div>
+    </div>
+  </fieldset>
+
 </form>
 <!--</div>-->

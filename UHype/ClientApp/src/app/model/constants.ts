@@ -113,6 +113,18 @@ export const energies: IKeyValuePairs[] = [
   { value: 0, label: "None of the time" }
 ];
 
+export const eae: Array<{ control: string, label: string }> = [
+  { control: 'hasPed', label: 'Did you feel full of pep?' },
+  { control: 'isNervous', label: 'Have you been a very nervous person?' },
+  { control: 'isDump', label: 'Have you felt so down in the dumps that nothing could cheer you up?' },
+  { control: 'wasPeaceful', label: 'Have you felt calm and peaceful?' },
+  { control: 'hasEnergy', label: 'Did you have a lot of energy?' },
+  { control: 'wasDownhearted', label: 'Have you felt downhearted and blue?' },
+  { control: 'wasWornOut', label: 'Did you feel worn out?' },
+  { control: 'beenHappy', label: 'Have you been a happy person?' },
+  { control: 'feelTired', label: 'Did you feel tired?' },
+  { control: 'socialInterfere', label: 'My physical health has interfered in my social life' }
+]
 export const healthies: IKeyValuePairs[] = [
   { value: 5, label: "Definitely true" },
   { value: 4, label: "Mostly true" },
@@ -121,6 +133,14 @@ export const healthies: IKeyValuePairs[] = [
   { value: 1, label: "Definitely false" }
 ];
 
+export const heaqts: Array<{ control: string, label: string }> = [
+  { control: 'sickEasier', label: 'I seem to get sick easier than other people' },
+  { control: 'veryHealthy', label: 'I am as healthy as anybody I know' },
+  { control: 'toGetWorse', label: ' I expect my health to get worse' },
+  { control: 'isExcellent', label: 'My health is excellent ' }
+]
+export const healthScale: IKeyValuePairs[] = [
+  { value: 5, label: 'Excellent' }, { value: 4, label: 'Very Good' }, { value: 3, label: 'Good' }, { value: 2, label: 'Fair' }, { value: 1, label: 'Poor' }]
 export const bpControls: IKeyValuePairs[] = [
   { value: 2, label: "Controlled " },
   { value: 1, label: "Uncontrolled " },
@@ -156,4 +176,56 @@ export const twoYearsCare: Array<{ control: string, label: string }> = [
     control: "hospTime", label: "How often do you take your drugs before coming to the clinic for a follow up"
   },
   { control: "takeDrugsBeforeVisit", label: "Do you get to the hospital on time for typical hypertension follow up" }
+]
+
+export const yearCompare: IKeyValuePairs[] = [
+  { value: 5, label: 'Much better now than one year ago' },
+  { value: 4, label: 'Somewhat better now than one year ago' },
+  { value: 3, label: 'About the same' },
+  { value: 2, label: 'Somewhat worse now than one year ago' },
+  { value: 1, label: 'Much worse than one year ago' },
+]
+
+export const actLimits: Array<{ control: string, label: string }> = [
+  { control: 'vigorous', label: "Vigorous activities, such as running, lifting heavy objects, participating in strenuous sports" },
+  {
+    control: 'moderate', label: "Moderate activities, such as moving a table, lifting or carrying groceries"
+  },
+  {
+    control: "climbing", label: "Climbing one flight of stairs"
+  },
+  {
+    control: "bending", label: "Bending, kneeling, or stooping"
+  },
+  { control: "walkingMile", label: "Walking more than a mile" },
+  {
+    control: "walkingBlocks", label: "Walking several blocks"
+  },
+  {
+    control: "walkingOne", label: "Walking one block"
+  },
+  { control: "bathingSelf", label: "Bathing or dressing yourself" }
+]
+
+export const phyLimits: Array<{ control: string, label: string }> = [
+  { control: 'cutDown', label: "Cut down the amount of time you spent on work or other activities  strenuous sports" },
+  {
+    control: 'accomplishLess', label: "Accomplished less than you would like"
+  },
+  {
+    control: "wereLimited", label: "Were limited in the kind of work or other activities"
+  },
+  {
+    control: "hadDiff", label: "Had difficulty performing the work or other activities(for example, it took extra effort)"
+  }
+]
+
+export const emLimits: Array<{ control: string, label: string }> = [
+  { control: 'cutDown', label: "Cut down the amount of time you spent on work or other activities" },
+  {
+    control: 'accomplishEm', label: "Accomplished less than you would like"
+  },
+  {
+    control: "wasCareful", label: "Didn't do work or other activities as carefully as usual"
+  }
 ]

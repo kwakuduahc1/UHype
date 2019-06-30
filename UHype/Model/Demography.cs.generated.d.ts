@@ -21,7 +21,7 @@ declare module Server.Dtos {
 			forgotten: boolean;
 			others: string;
 			isControlled: boolean;
-			hasAdmiitedIn12: boolean;
+			hasAdmitedIn12: boolean;
 			measureAtHome: boolean;
 			relativesHBP: any;
 			degree1: boolean;
@@ -77,6 +77,7 @@ declare module Server.Dtos {
 			abdCirc: number;
 			systole: number;
 			diastole: number;
+			fat: number;
 			demography: Server.Dtos.Demography;
 		};
 		bpHistory: {
@@ -86,7 +87,12 @@ declare module Server.Dtos {
 			dateChecked: Date;
 			demography: Server.Dtos.Demography;
 		};
-		charts: any[];
+		charts: {
+			demographyID: number;
+			comorbidity: string;
+			medication: string;
+			demography: Server.Dtos.Demography;
+		};
 		labs: {
 			demographyID: number;
 			cholesterol: number;
@@ -144,6 +150,8 @@ declare module Server.Dtos {
 			concerns: string;
 			hasAssitance: boolean;
 			takesHerbal: any;
+			stillHerbal: boolean;
+			herbReason: string;
 			seenDietician: any;
 			believeDiet: any;
 			specialDiet: any;
@@ -152,6 +160,7 @@ declare module Server.Dtos {
 			running: boolean;
 			others: string;
 			oftenPhysical: any;
+			timePhysical: any;
 			cigarette: boolean;
 			howLongCig: any;
 			numberPerDay: any;

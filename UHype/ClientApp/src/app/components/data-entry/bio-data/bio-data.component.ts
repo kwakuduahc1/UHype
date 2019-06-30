@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, Form } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { DataProvider } from 'src/app/providers/DataProvider';
-import { maritalStatuses, educations, religions, energies, occupation, gender, ethnics, sections, tripples, yesNos, knows, drugSrcs, twoYearsCare } from 'src/app/model/constants';
+import { maritalStatuses, educations, religions, energies, occupation, gender, ethnics, sections, tripples, yesNos, knows, drugSrcs, twoYearsCare, limits, yearCompare, healthScale, actLimits, phyLimits, emLimits, levels, eae, healthies, heaqts } from 'src/app/model/constants';
 import { ActivityProvider } from 'src/app/providers/ActivityProvider';
-import { IDemography, ISecondSections } from 'src/app/model/dtos';
+import { IDemography, ISecondSections, IQualityAssessments } from 'src/app/model/dtos';
 
 @Component({
   selector: 'bs-bio-data',
@@ -16,6 +16,7 @@ export class BioDataComponent implements OnInit {
   form2: FormGroup;
   form3: FormGroup;
   form4: FormGroup;
+  antform: FormGroup;
   marts = maritalStatuses;
   rels = religions;
   eths = ethnics;
@@ -28,6 +29,17 @@ export class BioDataComponent implements OnInit {
   knows = knows;
   srcs = drugSrcs;
   cares = twoYearsCare;
+  limits = limits;
+  cps = yearCompare;
+  scales = healthScale;
+  actLimits = actLimits;
+  phyLimits = phyLimits;
+  emLimits = emLimits;
+  levels = levels;
+  eae = eae;
+  energies = energies;
+  healthies = healthies;
+  heaqts = heaqts;
   constructor(fb: FormBuilder, meta: Meta, title: Title, private data: DataProvider, public act: ActivityProvider) {
     meta.addTags([{ name: 'description', content: "Page for data entry" }]);
     title.setTitle("Data Entry");
@@ -126,8 +138,52 @@ export class BioDataComponent implements OnInit {
       doctorWish: ["", Validators.compose([Validators.required])],
     });
     this.form4 = fb.group({
-
-    })
+      healthScale: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      compared: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      vigorous: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      moderate: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      climbing: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      bending: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      walkingMile: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      walkingBlocks: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      walkingOne: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      bathingSelf: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      cutDown: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      accomplishLess: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      wereLimited: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      hadDiff: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      cutDownEm: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      accomplishEm: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      wasCareful: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      emotionalInterfere: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      bodyPainsIn4: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      bodyPainInHouse: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      hasPed: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      isNervous: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      isDump: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      wasPeaceful: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      hasEnergy: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      wasDownhearted: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      wasWornOut: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      beenHappy: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      feelTired: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      socialInterfere: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      sickEasier: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      veryHealthy: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      toGetWorse: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+      isExcellent: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(6)])],
+    });
+    this.antform = fb.group(
+      {
+        demographyID: [false, Validators.compose([Validators.required])],
+        height: ['', Validators.compose([Validators.required, Validators.min(40), Validators.max(200)])],
+        weight: ['', Validators.compose([Validators.required, Validators.min(30), Validators.max(200)])],
+        mUAC: ['', Validators.compose([Validators.required])],
+        abdCirc: ['', Validators.compose([Validators.required])],
+        systole: ['', Validators.compose([Validators.required, Validators.min(30), Validators.max(200)])],
+        diastole: ['', Validators.compose([Validators.required, Validators.min(20), Validators.max(130)])],
+        fat: ['', Validators.compose([Validators.required, Validators.min(10), Validators.max(90)])]
+      })
   }
 
   ngOnInit() {
@@ -154,6 +210,10 @@ export class BioDataComponent implements OnInit {
     if (ix === 5)
       this.showKnowOther = true;
     else this.showKnowOther = false;
+  }
+
+  add4(qsa: IQualityAssessments) {
+    this.data.data.demography.qualityAssessments = qsa;
   }
 
   check(f: FormGroup) {

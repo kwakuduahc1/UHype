@@ -52,7 +52,7 @@ namespace UHype.Model
 
         public virtual BpHistory BpHistory { get; set; }
 
-        public virtual ICollection<Charts> Charts { get; set; }
+        public virtual Charts Charts { get; set; }
 
         public virtual Labs Labs { get; set; }
 

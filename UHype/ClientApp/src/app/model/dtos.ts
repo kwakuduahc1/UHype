@@ -84,6 +84,7 @@ export interface IAnthropometries {
   abdCirc: number;
   systole: number;
   diastole: number;
+  fat: number;
 }
 
 export interface IBpHistory {

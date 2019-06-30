@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UHype.Model;
 
 namespace UHype.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190630185117_ChartsFix")]
+    partial class ChartsFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -234,12 +236,8 @@ namespace UHype.Migrations
                 {
                     b.Property<int>("DemographyID");
 
-                    b.Property<byte>("BpControl");
-
                     b.Property<string>("Comorbidity")
                         .HasMaxLength(200);
-
-                    b.Property<bool>("FollowUp");
 
                     b.Property<string>("Medication")
                         .HasMaxLength(150);

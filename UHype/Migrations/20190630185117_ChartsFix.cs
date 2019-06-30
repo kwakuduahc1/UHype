@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace UHype.Migrations
 {
-    public partial class GuidToInt : Migration
+    public partial class ChartsFix : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -60,6 +60,7 @@ namespace UHype.Migrations
                     Facility = table.Column<string>(maxLength: 50, nullable: true),
                     Age = table.Column<string>(maxLength: 6, nullable: false),
                     Marital = table.Column<string>(maxLength: 20, nullable: false),
+                    Gender = table.Column<byte>(nullable: false),
                     Religion = table.Column<string>(maxLength: 20, nullable: false),
                     Ethnicity = table.Column<string>(maxLength: 20, nullable: false),
                     Occupation = table.Column<string>(maxLength: 30, nullable: false),
@@ -188,7 +189,8 @@ namespace UHype.Migrations
                     MUAC = table.Column<double>(nullable: false),
                     AbdCirc = table.Column<double>(nullable: false),
                     Systole = table.Column<double>(nullable: false),
-                    Diastole = table.Column<double>(nullable: false)
+                    Diastole = table.Column<double>(nullable: false),
+                    Fat = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -225,15 +227,13 @@ namespace UHype.Migrations
                 name: "Charts",
                 columns: table => new
                 {
-                    ChartsID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     DemographyID = table.Column<int>(nullable: false),
                     Comorbidity = table.Column<string>(maxLength: 200, nullable: true),
                     Medication = table.Column<string>(maxLength: 150, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Charts", x => x.ChartsID);
+                    table.PrimaryKey("PK_Charts", x => x.DemographyID);
                     table.ForeignKey(
                         name: "FK_Charts_Demography_DemographyID",
                         column: x => x.DemographyID,
@@ -331,7 +331,7 @@ namespace UHype.Migrations
                     Forgotten = table.Column<bool>(nullable: false),
                     Others = table.Column<string>(maxLength: 50, nullable: true),
                     IsControlled = table.Column<bool>(nullable: false),
-                    HasAdmiitedIn12 = table.Column<bool>(nullable: false),
+                    HasAdmitedIn12 = table.Column<bool>(nullable: false),
                     MeasureAtHome = table.Column<bool>(nullable: false),
                     RelativesHBP = table.Column<byte>(nullable: false),
                     Degree1 = table.Column<bool>(nullable: false),
@@ -398,6 +398,8 @@ namespace UHype.Migrations
                     Concerns = table.Column<string>(maxLength: 50, nullable: true),
                     HasAssitance = table.Column<bool>(nullable: false),
                     TakesHerbal = table.Column<byte>(nullable: false),
+                    StillHerbal = table.Column<bool>(nullable: false),
+                    HerbReason = table.Column<string>(maxLength: 100, nullable: true),
                     SeenDietician = table.Column<byte>(nullable: false),
                     BelieveDiet = table.Column<byte>(nullable: false),
                     SpecialDiet = table.Column<byte>(nullable: false),
@@ -406,6 +408,7 @@ namespace UHype.Migrations
                     Running = table.Column<bool>(nullable: false),
                     Others = table.Column<string>(nullable: true),
                     OftenPhysical = table.Column<byte>(nullable: false),
+                    TimePhysical = table.Column<byte>(nullable: false),
                     Cigarette = table.Column<bool>(nullable: false),
                     HowLongCig = table.Column<byte>(nullable: false),
                     NumberPerDay = table.Column<byte>(nullable: false),
@@ -471,11 +474,6 @@ namespace UHype.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Charts_DemographyID",
-                table: "Charts",
-                column: "DemographyID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

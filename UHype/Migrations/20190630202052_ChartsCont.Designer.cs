@@ -10,8 +10,8 @@ using UHype.Model;
 namespace UHype.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190624165212_GuidToInt")]
-    partial class GuidToInt
+    [Migration("20190630202052_ChartsCont")]
+    partial class ChartsCont
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -202,6 +202,8 @@ namespace UHype.Migrations
 
                     b.Property<double>("Diastole");
 
+                    b.Property<double>("Fat");
+
                     b.Property<double>("Height");
 
                     b.Property<double>("MUAC");
@@ -232,21 +234,19 @@ namespace UHype.Migrations
 
             modelBuilder.Entity("UHype.Model.Charts", b =>
                 {
-                    b.Property<int>("ChartsID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("DemographyID");
+
+                    b.Property<byte>("BpControl");
 
                     b.Property<string>("Comorbidity")
                         .HasMaxLength(200);
 
-                    b.Property<int>("DemographyID");
+                    b.Property<bool>("FollowUp");
 
                     b.Property<string>("Medication")
                         .HasMaxLength(150);
 
-                    b.HasKey("ChartsID");
-
-                    b.HasIndex("DemographyID");
+                    b.HasKey("DemographyID");
 
                     b.ToTable("Charts");
                 });
@@ -273,6 +273,8 @@ namespace UHype.Migrations
 
                     b.Property<string>("Facility")
                         .HasMaxLength(50);
+
+                    b.Property<byte>("Gender");
 
                     b.Property<byte>("IsSelf");
 
@@ -439,7 +441,7 @@ namespace UHype.Migrations
 
                     b.Property<byte>("HPTMeds");
 
-                    b.Property<bool>("HasAdmiitedIn12");
+                    b.Property<bool>("HasAdmitedIn12");
 
                     b.Property<byte>("HasNHIS");
 
@@ -541,6 +543,9 @@ namespace UHype.Migrations
 
                     b.Property<bool>("HasConcerns");
 
+                    b.Property<string>("HerbReason")
+                        .HasMaxLength(100);
+
                     b.Property<byte>("HowLongAlc");
 
                     b.Property<byte>("HowLongCig");
@@ -569,7 +574,11 @@ namespace UHype.Migrations
 
                     b.Property<byte>("SpecialDiet");
 
+                    b.Property<bool>("StillHerbal");
+
                     b.Property<byte>("TakesHerbal");
+
+                    b.Property<byte>("TimePhysical");
 
                     b.Property<byte>("UnitsPerWeek");
 
@@ -659,8 +668,8 @@ namespace UHype.Migrations
             modelBuilder.Entity("UHype.Model.Charts", b =>
                 {
                     b.HasOne("UHype.Model.Demography", "Demography")
-                        .WithMany("Charts")
-                        .HasForeignKey("DemographyID")
+                        .WithOne("Charts")
+                        .HasForeignKey("UHype.Model.Charts", "DemographyID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

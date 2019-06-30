@@ -23,6 +23,8 @@ namespace UHype.Model
 
         public double Diastole { get; set; }
 
+        public double Fat { get; set; }
+
         public virtual Demography Demography { get; set; }
     }
 }
