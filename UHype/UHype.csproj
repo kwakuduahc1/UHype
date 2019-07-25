@@ -26,6 +26,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190725113309_Updates.cs" />
+    <Compile Remove="Migrations\20190725113309_Updates.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Model\Demography.cs">
       <Generator>DtsGenerator</Generator>
       <LastGenOutput>Demography.cs.generated.d.ts</LastGenOutput>

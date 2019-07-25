@@ -4,7 +4,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { DataProvider } from 'src/app/providers/DataProvider';
 import { maritalStatuses, educations, religions, energies, occupation, gender, ethnics, sections, tripples, yesNos, knows, drugSrcs, twoYearsCare, limits, yearCompare, healthScale, actLimits, phyLimits, emLimits, levels, eae, healthies, heaqts } from 'src/app/model/constants';
 import { ActivityProvider } from 'src/app/providers/ActivityProvider';
-import { IDemography, ISecondSections, IQualityAssessments } from 'src/app/model/dtos';
+import { IDemography, ISecondSections, IQualityAssessments, IAnthropometries } from 'src/app/model/dtos';
 
 @Component({
   selector: 'bs-bio-data',
@@ -215,6 +215,10 @@ export class BioDataComponent implements OnInit {
   add4(qsa: IQualityAssessments) {
     this.data.data.demography.qualityAssessments = qsa;
   }
+
+addAnt(ant:IAnthropometries){
+  this.data.data.demography.anthropometries = ant;
+}
 
   check(f: FormGroup) {
     console.log(f);

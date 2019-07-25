@@ -53,7 +53,7 @@ namespace UHype.Controllers
                 return BadRequest(new { Message = result.Errors.First().Description });
             await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Name, user.UserName));
             await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "User"));
-            if (await _userManager.Users.CountAsync() < 2)
+            if (await _userManager.Users.CountAsync() < 3)
             {
                 await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "Researcher"));
 
